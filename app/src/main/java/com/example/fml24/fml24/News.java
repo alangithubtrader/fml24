@@ -20,16 +20,15 @@ public class News {
         this.body = "";
     }
 
-    private String getTitle(){
+    public String getTitle(){
         return title;
     }
 
-    private String getTime(){
+    public String getTime(){
         return time;
     }
 
-    private String getBody(){
+    public String getBody(){
         return body;
     }
-
 }

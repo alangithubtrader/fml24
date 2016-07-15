@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,14 +20,23 @@ import java.util.List;
  */
 public class FragmentNews extends ListFragment{
 
+    private ArrayList<News> news;
+    private NewsAdaptor newsAdaptor;
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        String[] values = new String[]{"Adnroid", "iOS", "iOS", "iOS", "iOS", "iOS", "iOS", "iOS", "iOS"};
+        news = new ArrayList<>();
+        news.add(new News("News Title 1", "Feb 6, 2010, 2:30pm", "Body1"));
+        news.add(new News("News Title 2", "Feb 29, 2011, 7:30pm", "Body2"));
+        news.add(new News("News Title 3", "Feb 19, 2016, 9:30pm", "Body3"));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapter);
+        newsAdaptor = new NewsAdaptor(getActivity(), news);
+
+        setListAdapter(newsAdaptor);
+
+
     }
 
 }
