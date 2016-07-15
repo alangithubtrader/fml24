@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         List<Fragment> fragments = new ArrayList<>(3);
 
         //add fragments to list
-        fragments.add(FragmentNews.newInstance(0));
-        fragments.add(FragmentPlay.newInstance(0));
-        fragments.add(FragmentMyNumbers.newInstance(0));
-        fragments.add(FragmentMore.newInstance(0));
+        fragments.add(new FragmentNews());
+        fragments.add(new FragmentPlay());
+        fragments.add(new FragmentMyNumbers());
+        fragments.add(new FragmentMore());
 
 
         //link fragments to container

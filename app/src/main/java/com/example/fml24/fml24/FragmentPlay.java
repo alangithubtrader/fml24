@@ -18,17 +18,10 @@ public class FragmentPlay extends Fragment{
         Log.i("Fragment Check", "Fragment Play Created.");
     }
 
-    public static FragmentPlay newInstance(int instance) {
-        Bundle args = new Bundle();
-        args.putInt("argsInstance", instance);
-        FragmentPlay firstFragment = new FragmentPlay();
-        firstFragment.setArguments(args);
-        return firstFragment;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater,container,savedInstanceState);
         return inflater.inflate(R.layout.fragment_play, container, false);
     }
 
