@@ -38,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
         List<Fragment> fragments = new ArrayList<>(3);
 
         //add fragments to list
-        fragments.add(FirstFragment.newInstance(0));
-        fragments.add(SecondFragment.newInstance(0));
-        fragments.add(ThirdFragment.newInstance(0));
+        fragments.add(FragmentNews.newInstance(0));
+        fragments.add(FragmentPlay.newInstance(0));
+        fragments.add(FragmentMyNumbers.newInstance(0));
+        fragments.add(FragmentMore.newInstance(0));
 
 
         //link fragments to container
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mBottomBar = BottomBar.attach(this, savedInstanceState);
         mBottomBar.setItems(R.menu.bottombar_menu);
         mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
+
             @Override
             public void onMenuTabSelected(@IdRes int menuItemId) {
                 //switch between tabs

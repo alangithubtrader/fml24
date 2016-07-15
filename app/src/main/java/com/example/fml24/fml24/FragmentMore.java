@@ -11,17 +11,17 @@ import android.view.ViewGroup;
 /**
  * Created by adu on 16-07-12.
  */
-public class FragmentMyNumbers extends Fragment{
+public class FragmentMore extends Fragment{
 
-    public FragmentMyNumbers()
+    public FragmentMore()
     {
-        Log.i("Fragment Check", "Fragment My Numbers Created.");
+        Log.i("Fragment Check", "Fragment Play Created.");
     }
 
-    public static FragmentMyNumbers newInstance(int instance) {
+    public static FragmentMore newInstance(int instance) {
         Bundle args = new Bundle();
         args.putInt("argsInstance", instance);
-        FragmentMyNumbers firstFragment = new FragmentMyNumbers();
+        FragmentMore firstFragment = new FragmentMore();
         firstFragment.setArguments(args);
         return firstFragment;
     }
@@ -29,7 +29,7 @@ public class FragmentMyNumbers extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_numbers, container, false);
+        return inflater.inflate(R.layout.fragment_more, container, false);
     }
 
 

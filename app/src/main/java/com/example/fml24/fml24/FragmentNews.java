@@ -18,6 +18,14 @@ public class FragmentNews extends Fragment{
         Log.i("Fragment Check", "Fragment News Created.");
     }
 
+    public static FragmentNews newInstance(int instance) {
+        Bundle args = new Bundle();
+        args.putInt("argsInstance", instance);
+        FragmentNews firstFragment = new FragmentNews();
+        firstFragment.setArguments(args);
+        return firstFragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
