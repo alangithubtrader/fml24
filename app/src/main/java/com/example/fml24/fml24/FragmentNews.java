@@ -5,6 +5,8 @@ import android.os.StrictMode;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 
+import com.example.fml24.fml24.API.BaseApi;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -28,27 +30,7 @@ public class FragmentNews extends ListFragment{
 
         StrictMode.setThreadPolicy(policy);
 
-        String test = "";
-        try {
-            URL url = new URL("https://free-lottery.herokuapp.com/api/get_announcement.php");
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            try {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                StringBuilder stringBuilder = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line).append("\n");
-                }
-                bufferedReader.close();
-                test = stringBuilder.toString();
-            }
-            finally{
-                urlConnection.disconnect();
-            }
-        }
-        catch(Exception e) {
-            Log.e("ERROR", e.getMessage(), e);
-        }
+        String test = BaseApi.getHttpRequest("https://free-lottery.herokuapp.com/api/get_announcement.php");
 
         news = new ArrayList<>();
         news.add(new News("News Title 1", "Feb 6, 2010, 2:30pm", test));
