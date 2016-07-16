@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    tools:context="com.example.fml24.fml24.FragmentMyNumbers">
+    tools:context="com.example.fml24.fml24.FragmentPlay">
 
     <TableRow
         android:layout_width="match_parent"
