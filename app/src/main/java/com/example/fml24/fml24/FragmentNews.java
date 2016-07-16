@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -36,28 +37,33 @@ public class FragmentNews extends ListFragment{
 
         StrictMode.setThreadPolicy(policy);
 
-        JSONArray test = null;
-            test = BaseApi.getHttpRequest("https://free-lottery.herokuapp.com/api/get_announcement.php");
-        news = new ArrayList<>();
-        try {
+        JSONArray jsonArrayOfNews = BaseApi.getHttpRequest("https://free-lottery.herokuapp.com/api/get_announcement.php");
 
-            JSONObject jsonobject = test.getJSONObject(0);
-            String name = jsonobject.getString("description");
-
-
-            news.add(new News("News Title 1", "Feb 6, 2010, 2:30pm", name));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        news.add(new News("News Title 2", "Feb 29, 2011, 7:30pm", "Body2"));
-        news.add(new News("News Title 3", "Feb 19, 2016, 9:30pm", "Body3"));
+        ArrayList<News> news = AddNewsToArrayList(jsonArrayOfNews);
 
         newsAdaptor = new NewsAdaptor(getActivity(), news);
 
         setListAdapter(newsAdaptor);
 
 
+    }
+
+    private ArrayList<News> AddNewsToArrayList(JSONArray jsonArray) {
+        ArrayList<News> news = new ArrayList<>();
+        try {
+            for(int index = 0; index < jsonArray.length(); index++)
+            {
+                JSONObject jsonObject = jsonArray.getJSONObject(index);
+
+                String title = jsonObject.getString("title");
+                String timeStamp = jsonObject.getString("timestamp");
+                String description = jsonObject.getString("description");
+
+                news.add(new News(title, timeStamp, description));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return news;
     }
 }
