@@ -11,18 +11,18 @@ import android.view.ViewGroup;
 /**
  * Created by adu on 16-07-12.
  */
-public class FragmentPlay extends Fragment{
+public class FragmentMore extends Fragment{
 
-    public FragmentPlay()
+    public FragmentMore()
     {
-        Log.i("Fragment Check", "Fragment Play Created.");
+        Log.i("Fragment Check", "Fragment More Created.");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
-        return inflater.inflate(R.layout.fragment_play, container, false);
+        return inflater.inflate(R.layout.fragment_more, container, false);
     }
 
 

@@ -6,13 +6,17 @@
     <item
         android:id="@+id/bottomBarItemOne"
         android:icon="@drawable/news"
-        android:title="First item" />
+        android:title="News" />
     <item
         android:id="@+id/bottomBarItemSecond"
-        android:icon="@drawable/news"
-        android:title="Second item" />
+        android:icon="@drawable/play"
+        android:title="Play" />
     <item
         android:id="@+id/bottomBarItemThird"
-        android:icon="@drawable/news"
-        android:title="Third item" />
+        android:icon="@drawable/mynumbers"
+        android:title="My Numbers" />
+    <item
+        android:id="@+id/bottomBarItemFourth"
+        android:icon="@drawable/more"
+        android:title="More" />
 </menu>

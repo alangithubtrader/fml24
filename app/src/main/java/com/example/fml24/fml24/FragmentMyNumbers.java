@@ -18,9 +18,18 @@ public class FragmentMyNumbers extends Fragment{
         Log.i("Fragment Check", "Fragment My Numbers Created.");
     }
 
+    public static FragmentMyNumbers newInstance(int instance) {
+        Bundle args = new Bundle();
+        args.putInt("argsInstance", instance);
+        FragmentMyNumbers firstFragment = new FragmentMyNumbers();
+        firstFragment.setArguments(args);
+        return firstFragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater,container,savedInstanceState);
         return inflater.inflate(R.layout.fragment_numbers, container, false);
     }
 
