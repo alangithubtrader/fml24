@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1,2,3,4"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/myNumbers"/>
+
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginLeft="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="January 14, 2016 4:39pm"
+        android:id="@+id/myNumbersTime"/>
+
+
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_marginLeft="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active"
+        android:id="@+id/state"/>
+
+
+</LinearLayout>
