@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private final int TAB_FIRST = FragNavController.TAB1;
     private final int TAB_SECOND = FragNavController.TAB2;
     private final int TAB_THIRD = FragNavController.TAB3;
+    private final int TAB_FOURTH = FragNavController.TAB4;
 
 
     @Override
@@ -65,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.bottomBarItemThird:
                         fragNavController.switchTab(TAB_THIRD);
+                        break;
+                    case R.id.bottomBarItemFourth:
+                        fragNavController.switchTab(TAB_FOURTH);
                         break;
                 }
             }
