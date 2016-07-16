@@ -1,4 +1,4 @@
-package com.example.fml24.fml24;
+package com.example.fml24.fml24.Model;
 
 /**
  * Created by adu on 16-07-15.

@@ -5,6 +5,9 @@ import android.os.StrictMode;
 import android.support.v4.app.ListFragment;
 
 import com.example.fml24.fml24.API.BaseApi;
+import com.example.fml24.fml24.Adaptor.NewsAdaptor;
+import com.example.fml24.fml24.Model.News;
+import com.example.fml24.fml24.Common;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,7 +47,7 @@ public class FragmentNews extends ListFragment{
         try {
             for(int index = 0; index < jsonArray.length(); index++)
             {
-                JSONObject jsonObject = jsonArray.getJSONObject(index);
+                JSONObject jsonObject = Common.getJsonObject(jsonArray, index);
 
                 String title = jsonObject.getString("title");
                 String timeStamp = jsonObject.getString("timestamp");
@@ -57,4 +60,5 @@ public class FragmentNews extends ListFragment{
         }
         return news;
     }
+
 }
