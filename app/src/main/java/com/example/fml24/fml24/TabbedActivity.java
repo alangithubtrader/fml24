@@ -3,6 +3,7 @@ package com.example.fml24.fml24;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -116,12 +117,25 @@ public class TabbedActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_tabbed, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
+
+    private void createAndAddFragment()
+    {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        FragmentNews newFragment = new FragmentNews();
+        fragmentTransaction.add(R.id.container, newFragment, "NEWS_VIEW_FRAGMENT");
+
+        fragmentTransaction.commit();
+    }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -137,7 +151,18 @@ public class TabbedActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            //return PlaceholderFragment.newInstance(position + 1);
+            switch (position)
+            {
+                case 0:
+                    return new FragmentNews();
+                case 1:
+                    return new FragmentPlay();
+                case 2:
+                    return new FragmentMyNumbers();
+                default:
+                    return new FragmentNews();
+            }
         }
 
         @Override
@@ -150,11 +175,11 @@ public class TabbedActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "News";
                 case 1:
-                    return "SECTION 2";
+                    return "Play";
                 case 2:
-                    return "SECTION 3";
+                    return "My Numbers";
             }
             return null;
         }

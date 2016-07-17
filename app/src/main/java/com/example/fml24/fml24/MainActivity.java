@@ -1,5 +1,6 @@
 package com.example.fml24.fml24;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
@@ -28,59 +29,32 @@ public class MainActivity extends AppCompatActivity {
     private final int TAB_THIRD = FragNavController.TAB3;
     private final int TAB_FOURTH = FragNavController.TAB4;
 
+    UserSessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        //FragNav
-        //list of fragments
-        List<Fragment> fragments = new ArrayList<>(3);
+        session = new UserSessionManager(getApplicationContext());
 
-        //add fragments to list
-        fragments.add(new FragmentNews());
-        fragments.add(new FragmentPlay());
-        fragments.add(new FragmentMyNumbers());
-        fragments.add(new FragmentMore());
+        if(session.checkLogin())
+        {
+            Intent toIntroToLoginActivity = new Intent(getApplicationContext(), IntroToLoginActivity.class);
+            startActivity(toIntroToLoginActivity);
+        }
+        else if(session.isUserLoggedIn())
+        {
+            Intent toTabbedActivity = new Intent(getApplicationContext(), TabbedActivity.class);
+            startActivity(toTabbedActivity);
+        }
+        else
+        {
+            Intent toLoginActivity = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(toLoginActivity);
+        }
 
-
-        //link fragments to container
-        fragNavController = new FragNavController(getSupportFragmentManager(), R.id.container, fragments);
-        //End of FragNav
-
-        //BottomBar menu
-        mBottomBar = BottomBar.attach(this, savedInstanceState);
-        mBottomBar.setItems(R.menu.bottombar_menu);
-        mBottomBar.setOnMenuTabClickListener(new OnMenuTabClickListener() {
-
-            @Override
-            public void onMenuTabSelected(@IdRes int menuItemId) {
-                //switch between tabs
-                switch (menuItemId) {
-                    case R.id.bottomBarItemOne:
-                        fragNavController.switchTab(TAB_FIRST);
-                        break;
-                    case R.id.bottomBarItemSecond:
-                        fragNavController.switchTab(TAB_SECOND);
-                        break;
-                    case R.id.bottomBarItemThird:
-                        fragNavController.switchTab(TAB_THIRD);
-                        break;
-                    case R.id.bottomBarItemFourth:
-                        fragNavController.switchTab(TAB_FOURTH);
-                        break;
-                }
-            }
-
-            @Override
-            public void onMenuTabReSelected(@IdRes int menuItemId) {
-                if (menuItemId == R.id.bottomBarItemOne) {
-                    fragNavController.clearStack();
-                }
-            }
-        });
-        //End of BottomBar menu
     }
 
     @Override
@@ -95,8 +69,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        // Necessary to restore the BottomBar's state, otherwise we would
-        // lose the current tab on orientation change.
-        mBottomBar.onSaveInstanceState(outState);
     }
 }

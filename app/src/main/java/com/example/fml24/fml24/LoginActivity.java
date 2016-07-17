@@ -63,10 +63,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    UserSessionManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        session = new UserSessionManager(getApplicationContext());
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -189,7 +194,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
 
-            Intent successLogin = new Intent(getApplicationContext(), MainActivity.class);
+            session.createUserLoginSession("loggedIn",
+                    email);
+
+            Intent successLogin = new Intent(getApplicationContext(), TabbedActivity.class);
             startActivity(successLogin);
         }
 
