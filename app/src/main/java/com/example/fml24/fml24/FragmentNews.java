@@ -3,6 +3,9 @@ package com.example.fml24.fml24;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.fml24.fml24.API.BaseApi;
 import com.example.fml24.fml24.Adaptor.NewsAdaptor;
@@ -41,6 +44,7 @@ public class FragmentNews extends ListFragment{
         //set all news into UI
         setListAdapter(newsAdaptor);
     }
+
 
     private ArrayList<News> AddNewsToArrayList(JSONArray jsonArray) {
         ArrayList<News> news = new ArrayList<>();
