@@ -46,15 +46,16 @@ public class FragmentPlay extends Fragment{
             list.add(String.valueOf(index));
         }
 
-        ArrayAdapter<String> adp=new ArrayAdapter<String> (getContext(),
-                android.R.layout.simple_list_item_1,list);
+        PlayAdaptor adp=new PlayAdaptor (getContext(),
+                list);
         grid.setAdapter(adp);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View v = inflater.inflate(R.layout.fragment_tabbed, container, false);
+        View v =  inflater.inflate(R.layout.fragment_tabbed, container, false);
+
         return v;
     }
 

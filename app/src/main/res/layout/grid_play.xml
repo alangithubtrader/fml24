@@ -2,24 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/gridNumberWithBubble"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/myImageView"
+        android:id="@+id/imageBubble"
         android:background="@drawable/lotto_buttons">
     </ImageView>
 
     <TextView
-        android:id="@+id/myImageViewText"
+        android:id="@+id/textInsideBubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/myImageView"
-        android:layout_alignTop="@+id/myImageView"
-        android:layout_alignRight="@+id/myImageView"
-        android:layout_alignBottom="@+id/myImageView"
+        android:layout_alignLeft="@+id/imageBubble"
+        android:layout_alignTop="@+id/imageBubble"
+        android:layout_alignRight="@+id/imageBubble"
+        android:layout_alignBottom="@+id/imageBubble"
         android:layout_margin="1dp"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"

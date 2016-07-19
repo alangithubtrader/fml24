@@ -12,6 +12,7 @@ import com.example.fml24.fml24.Model.MyNumbers;
 import com.example.fml24.fml24.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by adu on 16-07-16.
@@ -26,31 +27,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PlayAdaptor extends BaseAdapter{
+public class PlayAdaptor extends ArrayAdapter<String>{
 
-    String [] result;
-    Context context;
-    int [] imageId;
+    Context mContext;
     private static LayoutInflater inflater=null;
-    public PlayAdaptor(Context mainActivity, String[] prgmNameList) {
-        // TODO Auto-generated constructor stub
-        result=prgmNameList;
-        context=mainActivity;
-        inflater = ( LayoutInflater )context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    List<String> listOfNumbers;
 
+    public PlayAdaptor(Context c, List<String> numbers) {
+        super(c, 0, numbers);
+        listOfNumbers = numbers;
     }
 
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return result.length;
+        return listOfNumbers.size();
     }
 
     @Override
-    public Object getItem(int position) {
+    public String getItem(int position) {
         // TODO Auto-generated method stub
-        return position;
+        return listOfNumbers.get(position);
     }
 
     @Override
@@ -66,27 +63,42 @@ public class PlayAdaptor extends BaseAdapter{
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        Holder holder=new Holder();
-        View rowView;
 
-        rowView = inflater.inflate(R.layout.grid_play, null);
-        holder.tv=(TextView) rowView.findViewById(R.id.myImageViewText);
-        holder.img=(ImageView) rowView.findViewById(R.id.myImageView);
+        String number = getItem(position);
 
-        holder.tv.setText(result[position]);
-        holder.img.setImageResource(imageId[position]);
+        if(convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.grid_play, parent, false);
+        }
 
-        rowView.setOnClickListener(new OnClickListener() {
+        TextView numberInView = (TextView) convertView.findViewById(R.id.textInsideBubble);
 
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Toast.makeText(context, "You Clicked "+result[position], Toast.LENGTH_LONG).show();
-            }
-        });
 
-        return rowView;
+        numberInView.setText(number);
+
+        return convertView;
+
+//
+//        // TODO Auto-generated method stub
+//        Holder holder=new Holder();
+//        View rowView;
+//
+//        rowView = inflater.inflate(R.layout.grid_play, null);
+//        holder.tv=(TextView) rowView.findViewById(R.id.myImageViewText);
+//        holder.img=(ImageView) rowView.findViewById(R.id.myImageView);
+//
+//        holder.tv.setText(result[position]);
+//        holder.img.setImageResource(imageId[position]);
+//
+//        rowView.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                Toast.makeText(context, "You Clicked "+result[position], Toast.LENGTH_LONG).show();
+//            }
+//        });
+//
+//        return rowView;
     }
 
 }
