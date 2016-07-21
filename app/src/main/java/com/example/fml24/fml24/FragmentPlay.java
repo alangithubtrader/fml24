@@ -1,5 +1,6 @@
 package com.example.fml24.fml24;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,18 +9,33 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.fml24.fml24.Adaptor.PlayAdaptor;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
  * Created by adu on 16-07-12.
  */
 public class FragmentPlay extends Fragment implements View.OnClickListener{
+
+    private PlayTask mAuthTask = null;
+
+    public static final String USER_ID = "user_id";
+    public static final String NUMBERS = "numbers";
+
 
     ArrayList<Integer> listOfRandomNumbers;
     List<String> list;
@@ -76,12 +92,71 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         }
     }
 
-    private boolean SendRandomNumbersToServer(ArrayList<Integer> listOfRandomNumbers)
-    {
+    private boolean SendRandomNumbersToServer(ArrayList<Integer> listOfRandomNumbers) {
+        mAuthTask = new PlayTask("92", "1,8,33,7");
+        mAuthTask.execute((Void) null);
+
         return true;
     }
 
-    private ArrayList<Integer> SendRandomNumbersToDisplay()
+    public class PlayTask extends AsyncTask<Void, Void, Boolean> {
+
+        private final String userId;
+        private final String numbers;
+
+        String REGISTER_URL = "https://free-lottery.herokuapp.com/api/post_user_numbers.php";
+
+
+        PlayTask(String userIdd, String numberss) {
+            userId = userIdd;
+            numbers = numberss;
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            try {
+                // Simulate network access.
+                // TODO: attempt authentication against a network service.
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+
+                                if (response.matches(".*\\d+.*")) //does response contains any numbers?
+                                {
+                                    //Toast.makeText(TabbedActivity.this, "Login success.", Toast.LENGTH_LONG).show();
+                                    // TODO: some how we need to capture this user id for retrieving user info after successfully logged in.
+                                    return;
+
+                                }
+                                //Toast.makeText(TabbedActivity.this, "Register success.", Toast.LENGTH_LONG).show();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        }) {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put(USER_ID, userId);
+                        params.put(NUMBERS, numbers);
+                        return params;
+                    }
+                };
+
+                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                requestQueue.add(stringRequest);
+                return true;
+            }catch (Exception e) {
+                return false;
+            }
+        }
+    }
+
+        private ArrayList<Integer> SendRandomNumbersToDisplay()
     {
         int min = 1;
         int max = 49;
