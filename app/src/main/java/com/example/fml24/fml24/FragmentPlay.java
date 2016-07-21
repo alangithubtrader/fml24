@@ -11,6 +11,7 @@ import android.widget.GridView;
 
 import com.example.fml24.fml24.Adaptor.PlayAdaptor;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,6 +21,7 @@ import java.util.Random;
  */
 public class FragmentPlay extends Fragment implements View.OnClickListener{
 
+    ArrayList<Integer> listOfRandomNumbers;
     List<String> list;
 
     Button randomButton, playButton;
@@ -61,50 +63,64 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         switch (v.getId()) {
 
             case R.id.randomButton:
-
-                int min = 1;
-                int max = 49;
-                ArrayList<Integer> listOfRandomNumbers = new ArrayList<Integer>(10);
-                int randomNum = randInt(min, max);
-                listOfRandomNumbers.add(randomNum);
-                boolean isRandomNumberRepeated = false;
-                do
-                {
-                    randomNum = randInt(min, max);
-
-                    for (int randomNumberInList: listOfRandomNumbers)
-                    {
-                        if(randomNum == randomNumberInList)
-                        {
-                            isRandomNumberRepeated = true;
-                            break;
-                        }
-                    }
-
-                    if(!isRandomNumberRepeated)
-                    {
-                        listOfRandomNumbers.add(randomNum);
-                    }
-                    isRandomNumberRepeated = false;
-                }while(listOfRandomNumbers.size() < 4);
-
-                StringBuilder sb = new StringBuilder();
-                for (Integer number : listOfRandomNumbers) {
-                    sb.append(number != null ? "  " + number.toString() + "  " : "");
-                }
-
-                selectedNumbersEditText.setText(sb.toString());
-
+                listOfRandomNumbers = SendRandomNumbersToDisplay();
                 break;
 
             case R.id.playButton:
-                // do your code
+                SendRandomNumbersToServer(listOfRandomNumbers);
                 break;
 
 
             default:
                 break;
         }
+    }
+
+    private boolean SendRandomNumbersToServer(ArrayList<Integer> listOfRandomNumbers)
+    {
+        return true;
+    }
+
+    private ArrayList<Integer> SendRandomNumbersToDisplay()
+    {
+        int min = 1;
+        int max = 49;
+        int maxNumberToRandomize = 4;
+        boolean isRandomNumberRepeated = false;
+        ArrayList<Integer> listOfRandomNumbers = new ArrayList<>();
+
+        int randomNum = randInt(min, max);
+        listOfRandomNumbers.add(randomNum);
+
+        do
+        {
+            randomNum = randInt(min, max);
+
+            for (int randomNumberInList: listOfRandomNumbers)
+            {
+                if(randomNum == randomNumberInList)
+                {
+                    isRandomNumberRepeated = true;
+                    break;
+                }
+            }
+
+            if(!isRandomNumberRepeated)
+            {
+                listOfRandomNumbers.add(randomNum);
+            }
+            isRandomNumberRepeated = false;
+
+        }while(listOfRandomNumbers.size() < maxNumberToRandomize);
+
+        StringBuilder sb = new StringBuilder();
+        for (Integer number : listOfRandomNumbers) {
+            sb.append(number != null ? "  " + number.toString() + "  " : "");
+        }
+
+        selectedNumbersEditText.setText(sb.toString());
+
+        return listOfRandomNumbers;
     }
 
     public static int randInt(int min, int max) {
