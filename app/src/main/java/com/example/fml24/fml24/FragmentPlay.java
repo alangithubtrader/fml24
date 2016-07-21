@@ -1,44 +1,36 @@
 package com.example.fml24.fml24;
 
-import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 
-import com.example.fml24.fml24.API.BaseApi;
-import com.example.fml24.fml24.Adaptor.NewsAdaptor;
 import com.example.fml24.fml24.Adaptor.PlayAdaptor;
-import com.example.fml24.fml24.Model.News;
-
-import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
+import java.util.Random;
 
 /**
  * Created by adu on 16-07-12.
  */
-public class FragmentPlay extends Fragment{
+public class FragmentPlay extends Fragment implements View.OnClickListener{
 
     List<String> list;
+
+    Button randomButton, playButton;
+    EditText selectedNumbersEditText;
     GridView grid;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        list=new ArrayList<String>();
-        LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //View v = (View) inflater.from(getContext()).inflate(R.layout.fragment_tabbed, null);
+        list=new ArrayList<>();
         grid = (GridView)  getView().findViewById(R.id.gridView1);
 
         for(int index = 1; index <= 49; index++)
@@ -49,14 +41,82 @@ public class FragmentPlay extends Fragment{
         PlayAdaptor adp=new PlayAdaptor (getContext(),
                 list);
         grid.setAdapter(adp);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View v =  inflater.inflate(R.layout.fragment_tabbed, container, false);
+        View myView =  inflater.inflate(R.layout.fragment_tabbed, container, false);
+        playButton = (Button) myView.findViewById(R.id.playButton);
+        randomButton = (Button) myView.findViewById(R.id.randomButton);
+        randomButton.setOnClickListener(this);
+        playButton.setOnClickListener(this);
+        selectedNumbersEditText = (EditText) myView.findViewById(R.id.selectedNumbers);
+        return myView;
+    }
 
-        return v;
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.randomButton:
+
+                int min = 1;
+                int max = 49;
+                ArrayList<Integer> listOfRandomNumbers = new ArrayList<Integer>(10);
+                int randomNum = randInt(min, max);
+                listOfRandomNumbers.add(randomNum);
+                boolean isRandomNumberRepeated = false;
+                do
+                {
+                    randomNum = randInt(min, max);
+
+                    for (int randomNumberInList: listOfRandomNumbers)
+                    {
+                        if(randomNum == randomNumberInList)
+                        {
+                            isRandomNumberRepeated = true;
+                            break;
+                        }
+                    }
+
+                    if(!isRandomNumberRepeated)
+                    {
+                        listOfRandomNumbers.add(randomNum);
+                    }
+                    isRandomNumberRepeated = false;
+                }while(listOfRandomNumbers.size() < 4);
+
+                StringBuilder sb = new StringBuilder();
+                for (Integer number : listOfRandomNumbers) {
+                    sb.append(number != null ? "  " + number.toString() + "  " : "");
+                }
+
+                selectedNumbersEditText.setText(sb.toString());
+
+                break;
+
+            case R.id.playButton:
+                // do your code
+                break;
+
+
+            default:
+                break;
+        }
+    }
+
+    public static int randInt(int min, int max) {
+
+        // Usually this can be a field rather than a method variable
+        Random rand = new Random();
+
+        // nextInt is normally exclusive of the top value,
+        // so add 1 to make it inclusive
+        int randomNum = rand.nextInt((max - min) + 1) + min;
+
+        return randomNum;
     }
 
 
