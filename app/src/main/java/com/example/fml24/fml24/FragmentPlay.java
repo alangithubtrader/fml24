@@ -93,7 +93,18 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
     }
 
     private boolean SendRandomNumbersToServer(ArrayList<Integer> listOfRandomNumbers) {
-        mAuthTask = new PlayTask("92", "1,8,33,7");
+
+        String formattedNumbersForApi = "";
+        for(int index = 0; index < listOfRandomNumbers.size(); index++)
+        {
+            formattedNumbersForApi = formattedNumbersForApi.concat(listOfRandomNumbers.get(index).toString());
+            if(index != listOfRandomNumbers.size() - 1)
+            {
+                formattedNumbersForApi =  formattedNumbersForApi.concat(",");
+            }
+        }
+
+        mAuthTask = new PlayTask("92", formattedNumbersForApi);
         mAuthTask.execute((Void) null);
 
         return true;
