@@ -3,8 +3,11 @@ package com.example.fml24.fml24;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +40,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.fml24.fml24.API.BaseApi;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_EMAIL = "email";
-
+    public static final String USER_ID_AFTER_LOGIN = "user_id_after_login";
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -347,6 +354,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                 if(response.matches(".*\\d+.*")) //does response contains any numbers?
                                 {
+                                    int userId = Integer.parseInt(response.replaceAll("\\D", ""));
+
+                                    FragmentPlay fragmentPlay = new FragmentPlay();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString(USER_ID_AFTER_LOGIN, String.valueOf(userId));
+                                    fragmentPlay.setArguments(bundle);
+
+                                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                                    editor.putString(getString(R.string.user_id_after_login), String.valueOf(userId));
+                                    editor.commit();
+
+
                                     Toast.makeText(LoginActivity.this,"Login success.",Toast.LENGTH_LONG).show();
                                     // TODO: some how we need to capture this user id for retrieving user info after successfully logged in.
                                     return;

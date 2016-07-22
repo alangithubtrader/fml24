@@ -18,4 +18,5 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="user_id_after_login">user_id_after_login</string>
 </resources>

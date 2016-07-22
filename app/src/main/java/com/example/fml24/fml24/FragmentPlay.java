@@ -1,7 +1,10 @@
 package com.example.fml24.fml24;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import static com.example.fml24.fml24.R.string.user_id_after_login;
 
 /**
  * Created by adu on 16-07-12.
@@ -94,6 +99,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
 
     private boolean SendRandomNumbersToServer(ArrayList<Integer> listOfRandomNumbers) {
 
+        //format the numbers in the form "#,#,#,#"
         String formattedNumbersForApi = "";
         for(int index = 0; index < listOfRandomNumbers.size(); index++)
         {
@@ -104,7 +110,13 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
             }
         }
 
-        mAuthTask = new PlayTask("92", formattedNumbersForApi);
+        //Get user id from Login Activity
+        String userId = "";
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        userId = sharedPreferences.getString(getString(R.string.user_id_after_login), "");
+
+        //Send the numbers to the server as a background task
+        mAuthTask = new PlayTask(userId, formattedNumbersForApi);
         mAuthTask.execute((Void) null);
 
         return true;
@@ -132,21 +144,14 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-
-                                if (response.matches(".*\\d+.*")) //does response contains any numbers?
-                                {
-                                    //Toast.makeText(TabbedActivity.this, "Login success.", Toast.LENGTH_LONG).show();
-                                    // TODO: some how we need to capture this user id for retrieving user info after successfully logged in.
-                                    return;
-
-                                }
-                                //Toast.makeText(TabbedActivity.this, "Register success.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), "Good Luck!", Toast.LENGTH_LONG).show();
+                                return;
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                //Toast.makeText(LoginActivity.this, error.toString(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), "Server busy. Please try to again later.", Toast.LENGTH_LONG).show();
                             }
                         }) {
                     @Override
