@@ -227,6 +227,14 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
                 if(listOfRandomNumbers.get(index) == selectedNumber)
                 {
                     listOfRandomNumbers.remove(index);
+
+                    //if there are no more numbers in the array, then display 'Pick 4 Numbers'
+                    if(listOfRandomNumbers.size() == 0)
+                    {
+                        selectedNumbersEditText.setText(R.string.defaultTextNumberField);
+                        return listOfRandomNumbers;
+                    }
+
                     SendSortedNumbersToDisplay(listOfRandomNumbers);
                     return listOfRandomNumbers;
                 }

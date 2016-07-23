@@ -19,4 +19,5 @@
         completions."
     </string>
     <string name="user_id_after_login">user_id_after_login</string>
+    <string name="defaultTextNumberField">Pick 4 Numbers</string>
 </resources>
