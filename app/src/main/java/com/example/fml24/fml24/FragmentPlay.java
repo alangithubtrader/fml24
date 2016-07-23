@@ -9,9 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -64,6 +66,16 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         PlayAdaptor adp=new PlayAdaptor (getContext(),
                 list);
         grid.setAdapter(adp);
+
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,int position, long id)
+            {
+                Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
+                //RelativeLayout cnt = (RelativeLayout)grid.getAdapter().getItem(position);
+            }
+        });
 
     }
 
