@@ -42,22 +42,9 @@ public class FragmentNews extends ListFragment{
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //So that we can run network on UI thread
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        //Get all news annoucement from Api
-        JSONArray jsonArrayOfNews = BaseApi.getHttpRequest("https://free-lottery.herokuapp.com/api/get_announcement.php");
-
+        //Fetch all news using async task
         mAuthTask = new GetNewsTask();
         mAuthTask.execute((Void) null);
-
-        //Parse all news and add it to an array list
-        ArrayList<News> news = AddNewsToArrayList(jsonArrayOfNews);
-        newsAdaptor = new NewsAdaptor(getActivity(), news);
-
-        //set all news into UI
-        setListAdapter(newsAdaptor);
     }
 
 
@@ -80,46 +67,31 @@ public class FragmentNews extends ListFragment{
         return news;
     }
 
-    public class GetNewsTask extends AsyncTask<Void, Void, Boolean> {
+    public class GetNewsTask extends AsyncTask<Void, Void, JSONArray> {
 
         String REGISTER_URL = "https://free-lottery.herokuapp.com/api/get_announcement.php";
-
 
         GetNewsTask() {
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
-            try {
-                // Simulate network access.
-                // TODO: attempt authentication against a network service.
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, REGISTER_URL,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(getActivity(), "GetNews Async Task called.", Toast.LENGTH_LONG).show();
-                                return;
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getActivity(), "Server busy. Please try to again later.", Toast.LENGTH_LONG).show();
-                            }
-                        }) {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        return params;
-                    }
-                };
+        protected JSONArray doInBackground(Void... params) {
 
-                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                requestQueue.add(stringRequest);
-                return true;
-            }catch (Exception e) {
-                return false;
-            }
+            //Get all news annoucement from Api
+            return BaseApi.getHttpRequest("https://free-lottery.herokuapp.com/api/get_announcement.php");
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray jsonArrayOfNews)
+        {
+            //todo: add error handling when no internet / JSONArray is null
+
+            //Parse all news and add it to an array list
+            ArrayList<News> news = AddNewsToArrayList(jsonArrayOfNews);
+            newsAdaptor = new NewsAdaptor(getActivity(), news);
+
+            //set all news into UI
+            setListAdapter(newsAdaptor);
         }
     }
 

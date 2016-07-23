@@ -39,10 +39,6 @@ public class FragmentMyNumbers extends ListFragment{
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //So that we can run network on UI thread
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         //Get user id from Login Activity
         String userId = "";
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
