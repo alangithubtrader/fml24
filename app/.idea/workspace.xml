@@ -30,8 +30,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c2b05cb8-436a-4123-856c-2081bb6b54b6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentMyNumbers.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentMyNumbers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentNews.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentNews.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
     </list>
     <ignored path="app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,14 +58,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FragmentPlay.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FragmentPlay.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentPlay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="122" column="5" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.61538464">
+              <caret line="159" column="52" selection-start-line="159" selection-start-column="52" selection-end-line="159" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3591#3630#0" expanded="true" />
+                <element signature="e#5398#5414#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,10 +85,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FragmentMyNumbers.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FragmentMyNumbers.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentMyNumbers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60096157">
+            <state vertical-scroll-proportion="0.0">
               <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding>
                 <element signature="e#1377#1416#0" expanded="true" />
@@ -1836,7 +1836,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/IntroToLoginActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/TabbedActivity.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_tabbed.xml" />
-        <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/round_button.xml" />
         <option value="$PROJECT_DIR$/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/src/main/res/drawable/round_button2.xml" />
@@ -1851,6 +1850,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentPlay.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentNews.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentMyNumbers.java" />
+        <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -2778,6 +2778,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3591#3630#0" expanded="true" />
+            <element signature="e#5398#5414#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3129,14 +3130,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/generated/source/r/debug/com/example/fml24/fml24/R.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35">
@@ -3172,17 +3165,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentPlay.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="5" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3591#3630#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/API/BaseApi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
@@ -3214,12 +3196,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentMyNumbers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60096157">
+        <state vertical-scroll-proportion="0.0">
           <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding>
             <element signature="e#1377#1416#0" expanded="true" />
             <element signature="e#2607#2608#0" expanded="true" />
             <element signature="e#2647#2648#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FragmentPlay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61538464">
+          <caret line="159" column="52" selection-start-line="159" selection-start-column="52" selection-end-line="159" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3591#3630#0" expanded="true" />
+            <element signature="e#5398#5414#0" expanded="true" />
           </folding>
         </state>
       </provider>
