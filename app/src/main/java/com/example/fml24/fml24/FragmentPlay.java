@@ -172,7 +172,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         }
     }
 
-        private ArrayList<Integer> SendRandomNumbersToDisplay()
+    private ArrayList<Integer> SendRandomNumbersToDisplay()
     {
         int min = 1;
         int max = 49;
