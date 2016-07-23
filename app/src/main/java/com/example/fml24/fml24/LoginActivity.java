@@ -43,7 +43,9 @@ import com.android.volley.toolbox.Volley;
 import com.example.fml24.fml24.API.BaseApi;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -356,11 +358,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 {
                                     int userId = Integer.parseInt(response.replaceAll("\\D", ""));
 
-                                    FragmentPlay fragmentPlay = new FragmentPlay();
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString(USER_ID_AFTER_LOGIN, String.valueOf(userId));
-                                    fragmentPlay.setArguments(bundle);
-
+                                    //Store the user id in shared preferences
                                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.putString(getString(R.string.user_id_after_login), String.valueOf(userId));
@@ -372,6 +370,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     return;
 
                                 }
+
+                                JSONObject jsonTokener = BaseApi.getHttpRequestReturnTokener("https://free-lottery.herokuapp.com/api/get_user.php?email=alanlunba@hotmail.com");
+                                String userId = "";
+                                try {
+                                    userId = jsonTokener.getString("user_id");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(getString(R.string.user_id_after_login), String.valueOf(userId));
+                                editor.commit();
+
                                 Toast.makeText(LoginActivity.this,"Register success.",Toast.LENGTH_LONG).show();
                             }
                         },

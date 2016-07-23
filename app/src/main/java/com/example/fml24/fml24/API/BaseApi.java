@@ -1,6 +1,5 @@
 package com.example.fml24.fml24.API;
 
-import android.os.StrictMode;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
@@ -39,6 +38,32 @@ public class BaseApi {
                 JSONTokener tokener = new JSONTokener(stringBuilder.toString());
                 JSONArray finalResult = new JSONArray(tokener);
                 return finalResult;
+            }
+            finally{
+                urlConnection.disconnect();
+            }
+        }
+        catch(Exception e) {
+            Log.e("ERROR", e.getMessage(), e);
+        }
+        return null;
+    }
+
+    public static JSONObject getHttpRequestReturnTokener(String urlInput) {
+
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(line).append("\n");
+                }
+                bufferedReader.close();
+                JSONObject object = new JSONObject(stringBuilder.toString());
+                return object;
             }
             finally{
                 urlConnection.disconnect();
