@@ -45,6 +45,9 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
     public static final String USER_ID = "user_id";
     public static final String NUMBERS = "numbers";
 
+    public static final Integer maxNumberSelection = 4;
+    public static final Integer minNumber = 1;
+    public static final Integer maxNumber = 49;
 
     ArrayList<Integer> listOfRandomNumbers;
     List<String> list;
@@ -60,7 +63,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         list=new ArrayList<>();
         grid = (GridView)  getView().findViewById(R.id.gridView1);
 
-        for(int index = 1; index <= 49; index++)
+        for(int index = minNumber; index <= maxNumber; index++)
         {
             list.add(String.valueOf(index));
         }
@@ -103,6 +106,22 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.playButton:
+
+                Integer calculatedNumber;
+
+                if(listOfRandomNumbers == null)
+                {
+                    calculatedNumber = maxNumberSelection;
+                    Toast.makeText(getActivity(), "Please select " + calculatedNumber + " more number(s).", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(listOfRandomNumbers.size() < maxNumberSelection)
+                {
+                    calculatedNumber = maxNumberSelection - listOfRandomNumbers.size();
+                    Toast.makeText(getActivity(), "Please select " + calculatedNumber + " more number(s).", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 SendRandomNumbersToServer(listOfRandomNumbers);
                 break;
 
@@ -215,7 +234,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
 
             //if array length is 4, then delete lowest number in array list
 
-            if(listOfRandomNumbers.size() == 4)
+            if(listOfRandomNumbers.size() == maxNumberSelection)
             {
                 Collections.sort(listOfRandomNumbers, new MyIntComparable());
                 listOfRandomNumbers.remove(0);
@@ -251,9 +270,9 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
 
     private ArrayList<Integer> SendRandomNumbersToDisplay()
     {
-        int min = 1;
-        int max = 49;
-        int maxNumberToRandomize = 4;
+        int min = minNumber;
+        int max = maxNumber;
+        int maxNumberToRandomize = maxNumberSelection;
         boolean isRandomNumberRepeated = false;
         ArrayList<Integer> listOfRandomNumbers = new ArrayList<>();
 
