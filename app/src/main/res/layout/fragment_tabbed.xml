@@ -62,17 +62,19 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
 
             <EditText
-                android:background="@color/colorEditText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:background="@drawable/round_number_text_field"
                 android:id="@+id/selectedNumbers"
                 android:fontFamily="sans-serif-large"
-                android:text="  \??  \??  \??  \??  "
+                android:textAlignment="center"
+                android:text="Pick 4 Numbers"
                 android:textStyle="bold"
                 android:clickable="false"
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content">
+                android:layout_height="50dp"
+                android:layout_width="150dp">
             </EditText>
 
             <Button

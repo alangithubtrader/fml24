@@ -26,6 +26,8 @@ import com.example.fml24.fml24.Adaptor.PlayAdaptor;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,8 +74,9 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
             @Override
             public void onItemClick(AdapterView<?> parent, View v,int position, long id)
             {
-                Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
-                //RelativeLayout cnt = (RelativeLayout)grid.getAdapter().getItem(position);
+                //Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
+                listOfRandomNumbers = SendSelectedNumbersToDisplay(position + 1);
+
             }
         });
 
@@ -184,6 +187,68 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         }
     }
 
+    public class MyIntComparable implements Comparator<Integer> {
+
+        @Override
+        public int compare(Integer o2, Integer o1) {
+            return (o1>o2 ? -1 : (o1==o2 ? 0 : 1));
+        }
+    }
+
+    private ArrayList<Integer> SendSelectedNumbersToDisplay(int selectedNumber)
+    {
+        if(listOfRandomNumbers != null)
+        {
+            //get current numbers displayed
+            //if selectedNumber exists in array list
+            // then delete the selected number from array list
+            // sort and send list of numbers to UI
+            for(int index = 0; index < listOfRandomNumbers.size(); index++)
+            {
+                if(listOfRandomNumbers.get(index) == selectedNumber)
+                {
+                    listOfRandomNumbers.remove(index);
+                    SendSortedNumbersToDisplay(listOfRandomNumbers);
+                    return listOfRandomNumbers;
+                }
+            }
+
+            //if array length is 4, then delete lowest number in array list
+
+            if(listOfRandomNumbers.size() == 4)
+            {
+                Collections.sort(listOfRandomNumbers, new MyIntComparable());
+                listOfRandomNumbers.remove(0);
+            }
+        }
+        else
+        {
+            listOfRandomNumbers = new ArrayList<Integer>();
+        }
+
+        //add number to array list
+        listOfRandomNumbers.add(selectedNumber);
+
+        SendSortedNumbersToDisplay(listOfRandomNumbers);
+        return listOfRandomNumbers;
+    }
+
+    private void SendSortedNumbersToDisplay(ArrayList<Integer> list) {
+
+        if(list.size() > 1)
+        {
+            //sort, then display to UI
+            Collections.sort(list, new MyIntComparable());
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (Integer number : list) {
+            sb.append(number != null ? "  " + number.toString() + "  " : "");
+        }
+
+        selectedNumbersEditText.setText(sb.toString());
+    }
+
     private ArrayList<Integer> SendRandomNumbersToDisplay()
     {
         int min = 1;
@@ -216,13 +281,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
 
         }while(listOfRandomNumbers.size() < maxNumberToRandomize);
 
-        StringBuilder sb = new StringBuilder();
-        for (Integer number : listOfRandomNumbers) {
-            sb.append(number != null ? "  " + number.toString() + "  " : "");
-        }
-
-        selectedNumbersEditText.setText(sb.toString());
-
+        SendSortedNumbersToDisplay(listOfRandomNumbers);
         return listOfRandomNumbers;
     }
 
