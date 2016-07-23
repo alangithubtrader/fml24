@@ -31,8 +31,6 @@ import java.util.Map;
  */
 public class FragmentMyNumbers extends ListFragment{
 
-    public static final String USER_ID = "user_id";
-
     private MyNumbersAdaptor myNumbersAdaptor;
 
     private GetMyNumbersTask mAuthTask = null;
@@ -50,21 +48,14 @@ public class FragmentMyNumbers extends ListFragment{
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         userId = sharedPreferences.getString(getString(R.string.user_id_after_login), "");
 
-        //Get all news annoucement from Api
-        JSONArray jsonArrayOfNews = BaseApi.getHttpRequest("https://free-lottery.herokuapp.com/api/get_user_numbers.php?user_id=" + userId);
-
+        //Fetch all my numbers via user id in an async task
         mAuthTask = new GetMyNumbersTask(userId);
         mAuthTask.execute((Void) null);
 
-        //Parse all news and add it to an array list
-        ArrayList<MyNumbers> news = AddMyNumbersToArrayList(jsonArrayOfNews);
-        myNumbersAdaptor = new MyNumbersAdaptor(getActivity(), news);
-
-        //set all news into UI
-        setListAdapter(myNumbersAdaptor);
     }
 
     private ArrayList<MyNumbers> AddMyNumbersToArrayList(JSONArray jsonArray) {
+
         ArrayList<MyNumbers> myNumbersArrayList = new ArrayList<>();
         try {
             for(int index = 0; index < jsonArray.length(); index++)
@@ -74,6 +65,7 @@ public class FragmentMyNumbers extends ListFragment{
                 String numbers = jsonObject.getString("numbers");
                 String timeStamp = jsonObject.getString("timestamp");
 
+                //TODO: need to implement logic to determine state of my numbers
                 myNumbersArrayList.add(new MyNumbers(numbers, timeStamp, "Active"));
             }
         } catch (JSONException e) {
@@ -82,50 +74,30 @@ public class FragmentMyNumbers extends ListFragment{
         return myNumbersArrayList;
     }
 
-    public class GetMyNumbersTask extends AsyncTask<Void, Void, Boolean> {
+    public class GetMyNumbersTask extends AsyncTask<Void, Void, JSONArray> {
 
         private final String userId;
 
         String REGISTER_URL = "https://free-lottery.herokuapp.com/api/get_user_numbers.php?user_id=";
-
 
         GetMyNumbersTask(String userIdd) {
             userId = userIdd;
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
-            try {
-                // Simulate network access.
-                // TODO: attempt authentication against a network service.
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, REGISTER_URL + userId,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(getActivity(), "GetMyNumbers Async Task called.", Toast.LENGTH_LONG).show();
-                                return;
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getActivity(), "Server busy. Please try to again later.", Toast.LENGTH_LONG).show();
-                            }
-                        }) {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put(USER_ID, userId);
-                        return params;
-                    }
-                };
+        protected JSONArray doInBackground(Void... params) {
+            return BaseApi.getHttpRequest(REGISTER_URL + userId);
+        }
 
-                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                requestQueue.add(stringRequest);
-                return true;
-            }catch (Exception e) {
-                return false;
-            }
+        @Override
+        protected void onPostExecute(JSONArray jsonArrayOfMyNumbers) {
+
+            //Parse all of my numbers and add it to an array list
+            ArrayList<MyNumbers> myNumbers = AddMyNumbersToArrayList(jsonArrayOfMyNumbers);
+            myNumbersAdaptor = new MyNumbersAdaptor(getActivity(), myNumbers);
+
+            //set all of my numbers into UI
+            setListAdapter(myNumbersAdaptor);
         }
     }
 
