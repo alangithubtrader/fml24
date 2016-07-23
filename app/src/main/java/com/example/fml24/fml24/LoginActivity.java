@@ -371,7 +371,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                                 }
 
-                                JSONObject jsonTokener = BaseApi.getHttpRequestReturnTokener("https://free-lottery.herokuapp.com/api/get_user.php?email=alanlunba@hotmail.com");
+                                JSONObject jsonTokener = BaseApi.getHttpRequestReturnTokener("https://free-lottery.herokuapp.com/api/get_user.php?email=" + mEmail);
                                 String userId = "";
                                 try {
                                     userId = jsonTokener.getString("user_id");
