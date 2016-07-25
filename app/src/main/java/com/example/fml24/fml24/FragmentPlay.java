@@ -218,30 +218,9 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
     {
         if(listOfRandomNumbers != null)
         {
-            //get current numbers displayed
-            //if selectedNumber exists in array list
-            // then delete the selected number from array list
-            // sort and send list of numbers to UI
-            for(int index = 0; index < listOfRandomNumbers.size(); index++)
-            {
-                if(listOfRandomNumbers.get(index) == selectedNumber)
-                {
-                    listOfRandomNumbers.remove(index);
-
-                    //if there are no more numbers in the array, then display 'Pick 4 Numbers'
-                    if(listOfRandomNumbers.size() == 0)
-                    {
-                        selectedNumbersEditText.setText(R.string.defaultTextNumberField);
-                        return listOfRandomNumbers;
-                    }
-
-                    SendSortedNumbersToDisplay(listOfRandomNumbers);
-                    return listOfRandomNumbers;
-                }
-            }
+            if (RemoveExistingNumberInDisplayField(selectedNumber)) return listOfRandomNumbers;
 
             //if array length is 4, then delete lowest number in array list
-
             if(listOfRandomNumbers.size() == maxNumberSelection)
             {
                 Collections.sort(listOfRandomNumbers, new MyIntComparable());
@@ -258,6 +237,31 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
 
         SendSortedNumbersToDisplay(listOfRandomNumbers);
         return listOfRandomNumbers;
+    }
+
+    private boolean RemoveExistingNumberInDisplayField(int selectedNumber) {
+        //get current numbers displayed
+        //if selectedNumber exists in array list
+        // then delete the selected number from array list
+        // sort and send list of numbers to UI
+        for(int index = 0; index < listOfRandomNumbers.size(); index++)
+        {
+            if(listOfRandomNumbers.get(index) == selectedNumber)
+            {
+                listOfRandomNumbers.remove(index);
+
+                //if there are no more numbers in the array, then display 'Pick 4 Numbers'
+                if(listOfRandomNumbers.size() == 0)
+                {
+                    selectedNumbersEditText.setText(R.string.defaultTextNumberField);
+                    return true;
+                }
+
+                SendSortedNumbersToDisplay(listOfRandomNumbers);
+                return true;
+            }
+        }
+        return false;
     }
 
     private void SendSortedNumbersToDisplay(ArrayList<Integer> list) {
