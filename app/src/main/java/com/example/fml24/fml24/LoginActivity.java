@@ -3,7 +3,6 @@ package com.example.fml24.fml24;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -45,7 +44,6 @@ import com.example.fml24.fml24.API.BaseApi;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -215,10 +213,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            mAuthTask.execute(email);
 
-            session.createUserLoginSession("loggedIn",
-                    email);
+
+
+
 
             Intent successLogin = new Intent(getApplicationContext(), TabbedActivity.class);
             startActivity(successLogin);
@@ -331,7 +330,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<String, Void, Boolean> {
 
         private final String mEmail;
         private final String mPassword;
@@ -345,7 +344,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Boolean doInBackground(final String... params) {
             try {
                 // Simulate network access.
                 // TODO: attempt authentication against a network service.
@@ -365,26 +364,47 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                     editor.commit();
 
 
-                                    Toast.makeText(LoginActivity.this,"Login success.",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this, "Login success.", Toast.LENGTH_LONG).show();
                                     // TODO: some how we need to capture this user id for retrieving user info after successfully logged in.
                                     return;
 
                                 }
+                                String email = params[0];
 
-                                JSONObject jsonTokener = BaseApi.getHttpRequestReturnTokener("https://free-lottery.herokuapp.com/api/get_user.php?email=" + mEmail);
-                                String userId = "";
-                                try {
-                                    userId = jsonTokener.getString("user_id");
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                                StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://free-lottery.herokuapp.com/api/get_user.php?email=" + email,
+                                        new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
 
-                                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(getString(R.string.user_id_after_login), String.valueOf(userId));
-                                editor.commit();
+                                                int userId = Integer.parseInt(response.replaceAll("\\D", ""));
 
-                                Toast.makeText(LoginActivity.this,"Register success.",Toast.LENGTH_LONG).show();
+                                                //Store the user id in shared preferences
+                                                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                editor.putString(getString(R.string.user_id_after_login), String.valueOf(userId));
+                                                editor.commit();
+
+
+                                                Toast.makeText(LoginActivity.this, "Register success.", Toast.LENGTH_LONG).show();
+                                                // TODO: some how we need to capture this user id for retrieving user info after successfully logged in.
+                                                return;
+                                            }
+                                        },
+                                        new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Toast.makeText(LoginActivity.this,error.toString(), Toast.LENGTH_LONG).show();
+                                            }
+                                        }){
+                                    @Override
+                                    protected Map<String,String> getParams(){
+                                        Map<String,String> params = new HashMap<String, String>();
+                                        params.put(KEY_EMAIL, mEmail);
+                                        return params;
+                                    }};
+
+                                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                                    requestQueue.add(stringRequest);
                             }
                         },
                         new Response.ErrorListener() {
@@ -396,7 +416,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     @Override
                     protected Map<String,String> getParams(){
                     Map<String,String> params = new HashMap<String, String>();
-                    params.put(KEY_PASSWORD,mPassword);
                     params.put(KEY_EMAIL, mEmail);
                     return params;
                 }};
