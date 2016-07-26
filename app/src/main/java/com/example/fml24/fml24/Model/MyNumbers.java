@@ -30,4 +30,9 @@ public class MyNumbers {
 
     public String getState() { return state; }
 
+    public void setState(String setState)
+    {
+        state = setState;
+    }
+
 }

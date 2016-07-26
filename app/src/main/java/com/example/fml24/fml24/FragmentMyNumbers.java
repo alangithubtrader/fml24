@@ -3,28 +3,24 @@ package com.example.fml24.fml24;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.fml24.fml24.API.BaseApi;
 import com.example.fml24.fml24.Adaptor.MyNumbersAdaptor;
 import com.example.fml24.fml24.Model.MyNumbers;
+import com.example.fml24.fml24.Model.WinningNumbers;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 
 /**
  * Created by adu on 16-07-12.
@@ -33,7 +29,12 @@ public class FragmentMyNumbers extends ListFragment{
 
     private MyNumbersAdaptor myNumbersAdaptor;
 
-    private GetMyNumbersTask mAuthTask = null;
+    private GetNumbersTimeStateTask mAuthTask = null;
+
+    public ArrayList<MyNumbers> myNumbers = null;
+    public ArrayList<WinningNumbers> winningNumbers = null;
+
+    private int asyncTaskCounter = 0;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -44,13 +45,54 @@ public class FragmentMyNumbers extends ListFragment{
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         userId = sharedPreferences.getString(getString(R.string.user_id_after_login), "");
 
-        //Fetch all my numbers via user id in an async task
-        mAuthTask = new GetMyNumbersTask(userId);
+        mAuthTask = new GetNumbersTimeStateTask(userId);
         mAuthTask.execute((Void) null);
+
 
     }
 
-    private ArrayList<MyNumbers> AddMyNumbersToArrayList(JSONArray jsonArray) {
+    private ArrayList<MyNumbers> populateStatesInMyNumbersArray(ArrayList<MyNumbers> myNumbers, ArrayList<WinningNumbers> winningNumbers) throws ParseException {
+        //we only care about this week (active), last week (check), and the week before last week (expired)
+
+        String lastWinningTime = winningNumbers.get(0).getTime();
+        String lastWinningTime2WeeksAgo = winningNumbers.get(1).getTime();
+        String lastWinningTime3WeeksAgo = winningNumbers.get(2).getTime();
+
+
+        for(MyNumbers myNumber:myNumbers)
+        {
+            if(isFirstDateAfterSecondDate(myNumber.getTime(), lastWinningTime))
+            {
+                myNumber.setState("Active");
+                continue;
+            }
+
+            if(isFirstDateAfterSecondDate(myNumber.getTime(), lastWinningTime2WeeksAgo) && isFirstDateAfterSecondDate(lastWinningTime, myNumber.getTime()))
+            {
+                myNumber.setState("Check");
+                continue;
+            }
+
+            if(isFirstDateAfterSecondDate(myNumber.getTime(), lastWinningTime3WeeksAgo) && isFirstDateAfterSecondDate(myNumber.getTime(), lastWinningTime2WeeksAgo))
+            {
+                myNumber.setState("Expired");
+                continue;
+            }
+        }
+
+        return myNumbers;
+
+    }
+
+    private boolean isFirstDateAfterSecondDate(String firstDate, String secondDate) throws ParseException {
+        DateFormat dtf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        final Date dt1 = dtf.parse(firstDate);
+        final Date dt2 = dtf.parse(secondDate);
+
+        return  dt1.after(dt2);
+    }
+
+    private ArrayList<MyNumbers> addMyNumbersToArrayList(JSONArray jsonArray) {
 
         ArrayList<MyNumbers> myNumbersArrayList = new ArrayList<>();
         try {
@@ -70,32 +112,64 @@ public class FragmentMyNumbers extends ListFragment{
         return myNumbersArrayList;
     }
 
-    public class GetMyNumbersTask extends AsyncTask<Void, Void, JSONArray> {
+    private ArrayList<WinningNumbers> addWinningNumbersToArrayList(JSONArray jsonArray) {
 
-        private final String userId;
+        ArrayList<WinningNumbers> winningNumbersArrayList = new ArrayList<>();
+        try {
+            for(int index = 0; index < jsonArray.length(); index++)
+            {
+                JSONObject jsonObject = Common.getJsonObject(jsonArray, index);
 
-        String REGISTER_URL = "https://free-lottery.herokuapp.com/api/get_user_numbers.php?user_id=";
+                String numbers = jsonObject.getString("numbers");
+                String timeStamp = jsonObject.getString("timestamp");
 
-        GetMyNumbersTask(String userIdd) {
-            userId = userIdd;
+                winningNumbersArrayList.add(new WinningNumbers(timeStamp, numbers));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return winningNumbersArrayList;
+    }
+
+
+    public class GetNumbersTimeStateTask extends AsyncTask<Void, Void, ArrayList<MyNumbers>> {
+
+        private String userId = "";
+
+        String GET_USER_NUMBERS_URL = "https://free-lottery.herokuapp.com/api/get_user_numbers.php?user_id=";
+        String GET_WINNING_NUMBERS_URL = "https://free-lottery.herokuapp.com/api/get_winning_numbers.php";
+
+        GetNumbersTimeStateTask(String userIdd) {
+           userId = userIdd;
+        }
+
+
+        @Override
+        protected ArrayList<MyNumbers> doInBackground(Void... params) {
+            JSONArray jsonArrayOfUserNumbers = BaseApi.getHttpRequest(GET_USER_NUMBERS_URL + userId);
+            myNumbers = addMyNumbersToArrayList(jsonArrayOfUserNumbers);
+
+            JSONArray jsonArrayOfWinningNumbers = BaseApi.getHttpRequest(GET_WINNING_NUMBERS_URL);
+            winningNumbers = addWinningNumbersToArrayList(jsonArrayOfWinningNumbers);
+
+            try {
+                myNumbers = populateStatesInMyNumbersArray(myNumbers, winningNumbers);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return myNumbers;
         }
 
         @Override
-        protected JSONArray doInBackground(Void... params) {
-            return BaseApi.getHttpRequest(REGISTER_URL + userId);
-        }
+        protected void onPostExecute(ArrayList<MyNumbers> jsonArrayOfMyNumbers) {
 
-        @Override
-        protected void onPostExecute(JSONArray jsonArrayOfMyNumbers) {
-
-            //Parse all of my numbers and add it to an array list
-            ArrayList<MyNumbers> myNumbers = AddMyNumbersToArrayList(jsonArrayOfMyNumbers);
-            myNumbersAdaptor = new MyNumbersAdaptor(getActivity(), myNumbers);
+            myNumbersAdaptor = new MyNumbersAdaptor(getActivity(), jsonArrayOfMyNumbers);
 
             //set all of my numbers into UI
             setListAdapter(myNumbersAdaptor);
         }
-    }
 
+    }
 
 }
