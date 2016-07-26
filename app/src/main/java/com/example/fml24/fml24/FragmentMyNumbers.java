@@ -73,7 +73,7 @@ public class FragmentMyNumbers extends ListFragment{
                 continue;
             }
 
-            if(isFirstDateAfterSecondDate(myNumber.getTime(), lastWinningTime3WeeksAgo) && isFirstDateAfterSecondDate(myNumber.getTime(), lastWinningTime2WeeksAgo))
+            if(isFirstDateAfterSecondDate(lastWinningTime2WeeksAgo, myNumber.getTime()))
             {
                 myNumber.setState("Expired");
                 continue;
