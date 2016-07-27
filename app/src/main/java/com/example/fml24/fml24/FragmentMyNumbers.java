@@ -1,10 +1,14 @@
 package com.example.fml24.fml24;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.fml24.fml24.API.BaseApi;
 import com.example.fml24.fml24.Adaptor.MyNumbersAdaptor;
@@ -56,8 +60,6 @@ public class FragmentMyNumbers extends ListFragment{
 
         String lastWinningTime = winningNumbers.get(0).getTime();
         String lastWinningTime2WeeksAgo = winningNumbers.get(1).getTime();
-        String lastWinningTime3WeeksAgo = winningNumbers.get(2).getTime();
-
 
         for(MyNumbers myNumber:myNumbers)
         {
@@ -103,7 +105,7 @@ public class FragmentMyNumbers extends ListFragment{
                 String numbers = jsonObject.getString("numbers");
                 String timeStamp = jsonObject.getString("timestamp");
 
-                //TODO: need to implement logic to determine state of my numbers
+                //"Active" is just a dummy value that i put here until i call populateStatesInMyNumbersArray
                 myNumbersArrayList.add(new MyNumbers(numbers, timeStamp, "Active"));
             }
         } catch (JSONException e) {
@@ -164,12 +166,35 @@ public class FragmentMyNumbers extends ListFragment{
         @Override
         protected void onPostExecute(ArrayList<MyNumbers> jsonArrayOfMyNumbers) {
 
-            myNumbersAdaptor = new MyNumbersAdaptor(getActivity(), jsonArrayOfMyNumbers);
+            myNumbersAdaptor = new MyNumbersAdaptor(getActivity(), jsonArrayOfMyNumbers) {
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+
+                    View view = super.getView(position, convertView, parent);
+                    TextView text = (TextView) view.findViewById(R.id.state);
+
+                    if (text.getText() == "Active") {
+                        text.setTextColor(Color.GREEN);
+                    }
+
+                    if (text.getText() == "Check") {
+                        text.setTextColor(Color.YELLOW);
+                    }
+
+                    if (text.getText() == "Expired") {
+                        text.setTextColor(Color.RED);
+                    }
+
+                    return view;
+                }
+            };
 
             //set all of my numbers into UI
             setListAdapter(myNumbersAdaptor);
         }
 
     }
+
 
 }
