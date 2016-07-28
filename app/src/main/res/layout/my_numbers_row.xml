@@ -17,8 +17,8 @@
             android:id="@+id/myNumbers">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="@dimen/bubble_container_my_numbers"
+                android:layout_height="@dimen/bubble_container_my_numbers">
             <ImageView
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
@@ -45,8 +45,8 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="@dimen/bubble_container_my_numbers"
+                android:layout_height="@dimen/bubble_container_my_numbers">
             <ImageView
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
@@ -73,8 +73,8 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="@dimen/bubble_container_my_numbers"
+                android:layout_height="@dimen/bubble_container_my_numbers">
             <ImageView
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
@@ -101,8 +101,8 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="@dimen/bubble_container_my_numbers"
+                android:layout_height="@dimen/bubble_container_my_numbers">
             <ImageView
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"

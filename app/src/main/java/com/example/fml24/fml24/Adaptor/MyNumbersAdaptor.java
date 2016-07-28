@@ -39,6 +39,7 @@ public class MyNumbersAdaptor extends ArrayAdapter<MyNumbers>{
         TextView myTimeStampTextView = (TextView) convertView.findViewById(R.id.myNumbersTime);
         TextView myStateTextView = (TextView) convertView.findViewById(R.id.state);
 
+        //this should never throw exception. This should only throw when number is < 4 if user some how was able to submit < 4 numbers.  Hence why the try catch.
         try{
             textViewBubble1.setText(myNumbers.getNumbers().get(0));
         }catch(Exception e)
