@@ -32,11 +32,41 @@ public class MyNumbersAdaptor extends ArrayAdapter<MyNumbers>{
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.my_numbers_row, parent, false);
         }
 
-        TextView myNumbersTextView = (TextView) convertView.findViewById(R.id.myNumbers);
+        TextView textViewBubble1 = (TextView) convertView.findViewById(R.id.textInsideBubble1);
+        TextView textViewBubble2 = (TextView) convertView.findViewById(R.id.textInsideBubble2);
+        TextView textViewBubble3 = (TextView) convertView.findViewById(R.id.textInsideBubble3);
+        TextView textViewBubble4 = (TextView) convertView.findViewById(R.id.textInsideBubble4);
         TextView myTimeStampTextView = (TextView) convertView.findViewById(R.id.myNumbersTime);
         TextView myStateTextView = (TextView) convertView.findViewById(R.id.state);
 
-        myNumbersTextView.setText(myNumbers.getNumbers());
+        try{
+            textViewBubble1.setText(myNumbers.getNumbers().get(0));
+        }catch(Exception e)
+        {
+
+        }
+
+        try{
+            textViewBubble2.setText(myNumbers.getNumbers().get(1));
+        }catch(Exception e)
+        {
+
+        }
+
+        try{
+            textViewBubble3.setText(myNumbers.getNumbers().get(2));
+        }catch(Exception e)
+        {
+
+        }
+
+        try{
+            textViewBubble4.setText(myNumbers.getNumbers().get(3));
+        }catch(Exception e)
+        {
+
+        }
+
         myTimeStampTextView.setText(myNumbers.getTime());
         myStateTextView.setText(myNumbers.getState());
 

@@ -1,30 +1,40 @@
 package com.example.fml24.fml24;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.fml24.fml24.API.BaseApi;
 import com.example.fml24.fml24.Adaptor.MyNumbersAdaptor;
+import com.example.fml24.fml24.Adaptor.PlayAdaptor;
 import com.example.fml24.fml24.Model.MyNumbers;
 import com.example.fml24.fml24.Model.WinningNumbers;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by adu on 16-07-12.
@@ -39,6 +49,9 @@ public class FragmentMyNumbers extends ListFragment{
     public ArrayList<WinningNumbers> winningNumbers = null;
 
     private int asyncTaskCounter = 0;
+
+    GridView grid;
+    List<String> list;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -103,10 +116,12 @@ public class FragmentMyNumbers extends ListFragment{
                 JSONObject jsonObject = Common.getJsonObject(jsonArray, index);
 
                 String numbers = jsonObject.getString("numbers");
+                ArrayList<String> items = new ArrayList<String>(Arrays.asList(numbers.split("\\s*,\\s*")));
+
                 String timeStamp = jsonObject.getString("timestamp");
 
                 //"Active" is just a dummy value that i put here until i call populateStatesInMyNumbersArray
-                myNumbersArrayList.add(new MyNumbers(numbers, timeStamp, "Active"));
+                myNumbersArrayList.add(new MyNumbers(items, timeStamp, "Active"));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -123,9 +138,11 @@ public class FragmentMyNumbers extends ListFragment{
                 JSONObject jsonObject = Common.getJsonObject(jsonArray, index);
 
                 String numbers = jsonObject.getString("numbers");
+                ArrayList<String> items = new ArrayList<String>(Arrays.asList(numbers.split("\\s*,\\s*")));
+
                 String timeStamp = jsonObject.getString("timestamp");
 
-                winningNumbersArrayList.add(new WinningNumbers(timeStamp, numbers));
+                winningNumbersArrayList.add(new WinningNumbers(timeStamp, items));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -188,6 +205,7 @@ public class FragmentMyNumbers extends ListFragment{
 
                     return view;
                 }
+
             };
 
             //set all of my numbers into UI

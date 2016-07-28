@@ -10,17 +10,125 @@
         android:orientation="vertical"
         android:id="@+id/linearLayoutOfNumbersAndTimeStamp">
 
-    <TextView
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1,2,3,4"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/myNumbers"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/myNumbers">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <ImageView
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_margin="@dimen/bubble_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageBubble1"
+                android:src="@mipmap/lotto_buttons">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/textInsideBubble1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/imageBubble1"
+                android:layout_alignTop="@+id/imageBubble1"
+                android:layout_alignRight="@+id/imageBubble1"
+                android:layout_alignBottom="@+id/imageBubble1"
+                android:layout_margin="1dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="1"
+                android:textColor="#FFFFFF" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <ImageView
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_margin="@dimen/bubble_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageBubble2"
+                android:src="@mipmap/lotto_buttons">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/textInsideBubble2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/imageBubble2"
+                android:layout_alignTop="@+id/imageBubble2"
+                android:layout_alignRight="@+id/imageBubble2"
+                android:layout_alignBottom="@+id/imageBubble2"
+                android:layout_margin="1dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="1"
+                android:textColor="#FFFFFF" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <ImageView
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_margin="@dimen/bubble_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageBubble3"
+                android:src="@mipmap/lotto_buttons">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/textInsideBubble3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/imageBubble3"
+                android:layout_alignTop="@+id/imageBubble3"
+                android:layout_alignRight="@+id/imageBubble3"
+                android:layout_alignBottom="@+id/imageBubble3"
+                android:layout_margin="1dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="1"
+                android:textColor="#FFFFFF" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <ImageView
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_margin="@dimen/bubble_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageBubble4"
+                android:src="@mipmap/lotto_buttons">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/textInsideBubble4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/imageBubble4"
+                android:layout_alignTop="@+id/imageBubble4"
+                android:layout_alignRight="@+id/imageBubble4"
+                android:layout_alignBottom="@+id/imageBubble4"
+                android:layout_margin="1dp"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="1"
+                android:textColor="#FFFFFF" />
+            </RelativeLayout>
+        </LinearLayout>
+
 
     <TextView
         android:textAppearance="?android:attr/textAppearanceSmall"
