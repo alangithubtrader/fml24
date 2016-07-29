@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fml24.fml24.R;
@@ -52,6 +53,17 @@ public class PlayAdaptor extends ArrayAdapter<String>{
 
 
         numberInView.setText(number);
+
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageBubble);
+        //set colour
+        if((position >= 7 && position <= 13) || (position >=21 && position <=27) || (position >= 35 && position <= 41))
+        {
+            imageView.setImageResource(R.mipmap.lotto_buttons2);
+        }
+        else
+        {
+            imageView.setImageResource(R.mipmap.lotto_buttons);
+        }
 
         return convertView;
 
