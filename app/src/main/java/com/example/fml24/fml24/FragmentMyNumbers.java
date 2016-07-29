@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -188,6 +189,7 @@ public class FragmentMyNumbers extends ListFragment{
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
 
+                    //we are applying the colours here because we don't know the labels before hand
                     View view = super.getView(position, convertView, parent);
                     TextView text = (TextView) view.findViewById(R.id.state);
 
@@ -204,6 +206,7 @@ public class FragmentMyNumbers extends ListFragment{
                     }
 
                     return view;
+
                 }
 
             };
