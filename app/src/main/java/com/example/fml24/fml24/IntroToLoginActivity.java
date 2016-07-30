@@ -116,10 +116,6 @@ public class IntroToLoginActivity extends AppCompatActivity {
             }
             else if (getArguments().getInt(ARG_SECTION_NUMBER) == 3)
             {
-                rootView = inflater.inflate(R.layout.activity_login, container, false);
-            }
-            else
-            {
                 Intent wantToShowBottomBar = new Intent(getContext(), LoginActivity.class);
                 startActivity(wantToShowBottomBar);
             }

@@ -44,6 +44,11 @@
             android:screenOrientation="portrait"
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"></activity>
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".MoreActivity"
+            ></activity>
     </application>
 
 </manifest>

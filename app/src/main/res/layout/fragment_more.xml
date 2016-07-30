@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    tools:context="com.example.fml24.fml24.FragmentMore">
+    tools:context=".MoreActivity">
 
-
-    <TableRow
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/tableRowNews"
-         />
+        android:text="More page"/>
+
 </FrameLayout>
