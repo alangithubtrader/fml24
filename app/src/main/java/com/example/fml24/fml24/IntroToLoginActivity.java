@@ -109,14 +109,14 @@ public class IntroToLoginActivity extends AppCompatActivity {
             if(getArguments().getInt(ARG_SECTION_NUMBER) == 1)
             {
                 rootView = inflater.inflate(R.layout.fragment_intro_to_login, container, false);
-                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-                textView.setText(getString(R.string.section_format, 1111));
             }
             else if (getArguments().getInt(ARG_SECTION_NUMBER) == 2)
             {
                 rootView = inflater.inflate(R.layout.fragment_intro_to_login2, container, false);
-                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-                textView.setText(getString(R.string.section_format, 22222));
+            }
+            else if (getArguments().getInt(ARG_SECTION_NUMBER) == 3)
+            {
+                rootView = inflater.inflate(R.layout.fragment_intro_to_login3, container, false);
             }
             else
             {

@@ -16,10 +16,27 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
         <dimen name="dots_height">30dp</dimen>
         <dimen name="dots_margin_bottom">20dp</dimen>
+
         <dimen name="img_width_height">220dp</dimen>
+        <dimen name="large_img_width">140dp</dimen>
+        <dimen name="large_img_height">80dp</dimen>
+
+        <dimen name="medium_img_width_height">120dp</dimen>
+        <dimen name="medium_img_width">120dp</dimen>
+        <dimen name="medium_img_height">60dp</dimen>
+
+        <dimen name="small_img_width_height">110dp</dimen>
+        <dimen name="small_img_width">80dp</dimen>
+        <dimen name="small_img_height">40dp</dimen>
+
+        <dimen name="small_item_padding_all_around">2dp</dimen>
+        <dimen name="small_item_margin_all_around">15dp</dimen>
+
         <dimen name="slide_title">30dp</dimen>
         <dimen name="slide_desc">16dp</dimen>
         <dimen name="desc_padding">40dp</dimen>
+    <dimen name="linear_layout_margin_all_around">7dp</dimen>
+
     <!-- INTRO SCREENS ENDS -->
 
 
