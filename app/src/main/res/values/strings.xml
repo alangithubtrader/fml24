@@ -30,16 +30,17 @@
         <string name="slide_1_desc">Swipe to learn more</string>
 
         <string name="item_1_title">Win real cash prizes.</string>
-        <string name="item_1_desc">Yes, it's completely free \nto play and win.</string>
+        <string name="item_1_desc">Yes, it\'s completely free \nto play and win.</string>
 
         <string name="slide_2_item_2_title">How?</string>
         <string name="slide_2_item_2_desc">Watch a short video ad \nfor a chance to win our \ngrand jackpot and other \ncash prizes.</string>
 
-        <string name="slide_2_item_3_title">It's simple.</string>
+        <string name="slide_2_item_3_title">It\'s simple.</string>
         <string name="slide_2_item_3_desc">Pick your lucky numbers \nor have it done randomly. \nThen sit back and enjoy \na short video ad. Repeat \nto increase your chances \n of winning!</string>
 
-        <string name="slide_3_title">Great Discounts</string>
-        <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+        <string name="slide_3_title">All you need is an email to get started.</string>
+        <string name="slide_3_condition_1">Your email is your key to claiming your prizes. Please use a private email that only you have access to. See Contest Rules &amp; Conditions and FAQ for more information.</string>
+        <string name="slide_3_condition_2">By using Free Mobile Lottery, you agree to our Privacy Policy and abide by our Contest Rules &amp; Conditions (See last Tab).</string>
 
         <string name="slide_4_title">World Travel</string>
         <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>

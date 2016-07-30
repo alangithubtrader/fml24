@@ -11,6 +11,28 @@
     android:background="@drawable/blue_bg_1"
     tools:context="com.example.fml24.fml24.LoginActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/img_width_height"
+            android:layout_height="@dimen/img_width_height"
+            android:src="@drawable/logo_bar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/slide_3_title"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/slide_desc"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
     <!-- Login progress -->
     <ProgressBar
         android:id="@+id/login_progress"
@@ -23,7 +45,7 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -58,4 +80,33 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/linear_layout_margin_all_around">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/slide_3_condition_1"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/slide_desc"
+            android:textAlignment="gravity"
+            android:gravity="left"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/slide_3_condition_2"
+            android:textAlignment="gravity"
+            android:gravity="left"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/slide_desc"
+            />
+
+    </LinearLayout>
 </LinearLayout>

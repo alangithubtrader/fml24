@@ -116,7 +116,7 @@ public class IntroToLoginActivity extends AppCompatActivity {
             }
             else if (getArguments().getInt(ARG_SECTION_NUMBER) == 3)
             {
-                rootView = inflater.inflate(R.layout.fragment_intro_to_login3, container, false);
+                rootView = inflater.inflate(R.layout.activity_login, container, false);
             }
             else
             {
