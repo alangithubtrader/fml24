@@ -39,5 +39,7 @@
 
     <!-- INTRO SCREENS ENDS -->
 
+    <!--MORE SCREEN START -->
+    <dimen name="more_text_margin">10dp</dimen>
 
 </resources>

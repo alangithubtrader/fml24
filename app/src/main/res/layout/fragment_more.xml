@@ -1,15 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/moreLinearLayout"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1"
-    tools:context=".MoreActivity">
+    android:layout_height="match_parent">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="More page"/>
+        android:layout_height="60dp"
+        android:src="@drawable/logo_bar"
+        android:background="@color/colorPlayButton"/>
 
-</FrameLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/linear_layout_margin_all_around">
+
+        <TextView
+            android:layout_margin="@dimen/more_text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="ACCOUNT"
+            android:id="@+id/account" />
+
+        <TextView
+            android:layout_margin="@dimen/more_text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Change email address"
+            android:id="@+id/change_email_address" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="20dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/linear_layout_margin_all_around">
+
+        <TextView
+            android:layout_margin="@dimen/more_text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="SUPPORT"
+            android:id="@+id/support" />
+
+        <TextView
+            android:layout_margin="@dimen/more_text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Report a Problem"
+            android:id="@+id/report_a_problem" />
+
+        <TextView
+            android:layout_margin="@dimen/more_text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="FAQ"
+            android:id="@+id/faq" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginBottom="20dp"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/linear_layout_margin_all_around">
+
+
+        <TextView
+            android:layout_margin="@dimen/more_text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Terms &amp; Conditions"
+            android:id="@+id/terms_and_conditions" />
+
+        <TextView
+            android:layout_margin="@dimen/more_text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Game Rules"
+            android:id="@+id/game_rules" />
+
+        <TextView
+            android:layout_margin="@dimen/more_text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Follow us on Facebook!"
+            android:id="@+id/follow_us_on_facebook" />
+    </LinearLayout>
+
+
+</LinearLayout>
