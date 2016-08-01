@@ -2,13 +2,16 @@ package com.example.fml24.fml24;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,10 +65,24 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.report_a_problem:
                 Toast.makeText(getApplicationContext(), "Report a problem.", Toast.LENGTH_SHORT).show();
+
+                String names[] ={"Something isn't working","Gernal Feedback"};
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                LayoutInflater inflater = getLayoutInflater();
+                View convertView = (View) inflater.inflate(R.layout.custom_list_of_problems, null);
+                alertDialog.setView(convertView);
+                alertDialog.setTitle("List");
+                ListView lv = (ListView) convertView.findViewById(R.id.listOfProblems);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,names);
+                lv.setAdapter(adapter);
+                alertDialog.show();
+
                 break;
 
             case R.id.terms_and_conditions:
                 Toast.makeText(getApplicationContext(), "Terms and condition.", Toast.LENGTH_SHORT).show();
+                Intent termsAndConditionsIntent = new Intent(getApplicationContext(), TermsAndConditions.class);
+                startActivity(termsAndConditionsIntent);
                 break;
 
             case R.id.faq:

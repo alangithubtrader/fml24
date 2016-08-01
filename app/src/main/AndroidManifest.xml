@@ -55,6 +55,10 @@
             android:name=".ChangeEmailAddress"
             ></activity>
 
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".TermsAndConditions"
+            ></activity>
     </application>
 
 </manifest>
