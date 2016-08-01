@@ -1,5 +1,6 @@
 package com.example.fml24.fml24;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -55,6 +56,8 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.change_email_address:
                 Toast.makeText(getApplicationContext(), "Change email address.", Toast.LENGTH_SHORT).show();
+                Intent changeEmailAddressIntent = new Intent(getApplicationContext(), ChangeEmailAddress.class);
+                startActivity(changeEmailAddressIntent);
                 break;
 
             case R.id.report_a_problem:

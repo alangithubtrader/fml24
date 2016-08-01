@@ -49,6 +49,12 @@
             android:screenOrientation="portrait"
             android:name=".MoreActivity"
             ></activity>
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ChangeEmailAddress"
+            ></activity>
+
     </application>
 
 </manifest>

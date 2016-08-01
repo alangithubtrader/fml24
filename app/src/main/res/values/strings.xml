@@ -47,6 +47,11 @@
 
         <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
         <string name="play_again">Play Again</string>
+
     <!--INTRO STRINGS ENDS -->
+
+    <!-- MORE STRINGS STARTS -->
+    <string name="changeEmailAddressLabel">Change Email Address</string>
+    <!-- MORE STRINGS ENDS -->
 
 </resources>
