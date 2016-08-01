@@ -1,6 +1,7 @@
 package com.example.fml24.fml24;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -87,14 +88,26 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.faq:
                 Toast.makeText(getApplicationContext(), "FAQ.", Toast.LENGTH_SHORT).show();
+                Intent faqIntent = new Intent(getApplicationContext(), FAQ.class);
+                startActivity(faqIntent);
                 break;
 
             case R.id.game_rules:
                 Toast.makeText(getApplicationContext(), "Game Rules.", Toast.LENGTH_SHORT).show();
+                Intent gameRulesIntent = new Intent(getApplicationContext(), GameRules.class);
+                startActivity(gameRulesIntent);
                 break;
 
             case R.id.follow_us_on_facebook:
                 Toast.makeText(getApplicationContext(), "Follow us on facebook.", Toast.LENGTH_SHORT).show();
+                try {
+                    getApplicationContext().getPackageManager().getPackageInfo("com.facebook.freemobilelottery", 0);
+                    Intent blah = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/104"));
+                    startActivity(blah);
+                } catch (Exception e) {
+                    Intent blah2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/freemobilelottery"));
+                    startActivity(blah2);
+                }
                 break;
 
             default:
