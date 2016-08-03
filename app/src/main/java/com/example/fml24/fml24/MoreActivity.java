@@ -68,14 +68,26 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.report_a_problem:
                 Toast.makeText(getApplicationContext(), "Report a problem.", Toast.LENGTH_SHORT).show();
 
-                String names[] ={"Something isn't working","General Feedback", "Cancel"};
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                final String names[] ={"Something isn't working","General Feedback", "Cancel"};
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                 alertDialog.setTitle("Report a Problem");
                 alertDialog.setItems(names, new DialogInterface.OnClickListener(){
                    @Override
                     public void onClick(DialogInterface dialog, int which)
                    {
-
+                        switch (names[which]) {
+                            case "Something isn't working":
+                                Toast.makeText(getApplicationContext(), "Something isn't working", Toast.LENGTH_SHORT).show();
+                                
+                                break;
+                            case "General Feedback":
+                                Toast.makeText(getApplicationContext(), "General Feedback", Toast.LENGTH_SHORT).show();
+                            case "Cancel":
+                                Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            default:
+                                break;
+                        }
                    }
                 });
                 alertDialog.show();
