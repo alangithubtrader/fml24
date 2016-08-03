@@ -74,6 +74,11 @@
             android:screenOrientation="portrait"
             android:name=".ReportAProblemSubmissionFormActivity"
             ></activity>
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".GeneralFeedbackSubmissionFormActivity"
+            ></activity>
     </application>
 
 </manifest>

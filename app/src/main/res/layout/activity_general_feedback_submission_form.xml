@@ -15,14 +15,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:id="@+id/rapCancel" />
+            android:id="@+id/gfCancel" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Report a problem"
-            android:id="@+id/rapTitle"
+            android:text="General Feedback"
+            android:id="@+id/gfTitle"
             android:layout_centerHorizontal="true" />
 
         <Button
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Send"
-            android:id="@+id/rapSend" />
+            android:id="@+id/gfSend" />
 
     </RelativeLayout>
 

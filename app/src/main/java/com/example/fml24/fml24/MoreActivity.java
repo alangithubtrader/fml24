@@ -83,6 +83,8 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
                                 break;
                             case "General Feedback":
                                 Toast.makeText(getApplicationContext(), "General Feedback", Toast.LENGTH_SHORT).show();
+                                Intent generalFeedbackIntent = new Intent(getApplicationContext(), GeneralFeedbackSubmissionFormActivity.class);
+                                startActivity(generalFeedbackIntent);
                             case "Cancel":
                                 Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
