@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by adu on 16-08-01.
  */
-public class FAQ extends AppCompatActivity{
+public class FAQ extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState)
