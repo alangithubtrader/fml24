@@ -78,7 +78,8 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
                         switch (names[which]) {
                             case "Something isn't working":
                                 Toast.makeText(getApplicationContext(), "Something isn't working", Toast.LENGTH_SHORT).show();
-                                
+                                Intent submitProblemIntent = new Intent(getApplicationContext(), ReportAProblemSubmissionFormActivity.class);
+                                startActivity(submitProblemIntent);
                                 break;
                             case "General Feedback":
                                 Toast.makeText(getApplicationContext(), "General Feedback", Toast.LENGTH_SHORT).show();
