@@ -52,22 +52,22 @@
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".ChangeEmailAddress"
+            android:name=".ChangeEmailAddressActivity"
             ></activity>
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".TermsAndConditions"
+            android:name=".TermsAndConditionsActivity"
             ></activity>
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".GameRules"
+            android:name=".GameRulesActivity"
             ></activity>
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".FAQ"
+            android:name=".FAQActivity"
             ></activity>
     </application>
 

@@ -60,7 +60,7 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.change_email_address:
                 Toast.makeText(getApplicationContext(), "Change email address.", Toast.LENGTH_SHORT).show();
-                Intent changeEmailAddressIntent = new Intent(getApplicationContext(), ChangeEmailAddress.class);
+                Intent changeEmailAddressIntent = new Intent(getApplicationContext(), ChangeEmailAddressActivity.class);
                 startActivity(changeEmailAddressIntent);
                 break;
 
@@ -82,19 +82,19 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.terms_and_conditions:
                 Toast.makeText(getApplicationContext(), "Terms and condition.", Toast.LENGTH_SHORT).show();
-                Intent termsAndConditionsIntent = new Intent(getApplicationContext(), TermsAndConditions.class);
+                Intent termsAndConditionsIntent = new Intent(getApplicationContext(), TermsAndConditionsActivity.class);
                 startActivity(termsAndConditionsIntent);
                 break;
 
             case R.id.faq:
                 Toast.makeText(getApplicationContext(), "FAQ.", Toast.LENGTH_SHORT).show();
-                Intent faqIntent = new Intent(getApplicationContext(), FAQ.class);
+                Intent faqIntent = new Intent(getApplicationContext(), FAQActivity.class);
                 startActivity(faqIntent);
                 break;
 
             case R.id.game_rules:
                 Toast.makeText(getApplicationContext(), "Game Rules.", Toast.LENGTH_SHORT).show();
-                Intent gameRulesIntent = new Intent(getApplicationContext(), GameRules.class);
+                Intent gameRulesIntent = new Intent(getApplicationContext(), GameRulesActivity.class);
                 startActivity(gameRulesIntent);
                 break;
 
