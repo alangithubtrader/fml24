@@ -1,6 +1,7 @@
 package com.example.fml24.fml24;
 
 import android.content.SharedPreferences;
+import android.net.ParseException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -31,10 +32,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +52,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
     String time, date;
     TextView tvTime, tvDate;
 
+    private GetDeadlineTask getDeadlineTask = null;
     private PlayTask mAuthTask = null;
     private GetJackPotTask getJackPotTask = null;
 
@@ -94,6 +98,11 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
             }
         });
 
+        getJackPotTask = new GetJackPotTask();
+        getJackPotTask.execute();
+
+        getDeadlineTask = new GetDeadlineTask();
+        getDeadlineTask.execute();
 
     }
 
@@ -104,9 +113,6 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         jackPotText = (TextView)myView.findViewById(R.id.jackPotText);
         playButton = (Button) myView.findViewById(R.id.playButton);
 
-        getJackPotTask = new GetJackPotTask();
-        getJackPotTask.execute();
-
         randomButton = (Button) myView.findViewById(R.id.randomButton);
         randomButton.setOnClickListener(this);
         playButton.setOnClickListener(this);
@@ -114,40 +120,60 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
 
         deadline = (TextView)myView.findViewById(R.id.deadline);
 
-        Thread t = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(1000);
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                updateTextView();
-                            }
-                        });
-                    }
-                } catch (InterruptedException e) {
-                }
-            }
-        };
-
-        t.start();
-
 
         return myView;
     }
 
-    private void updateTextView() {
+    private void updateTextView(String deadLineFromApi) {
         noteTS = Calendar.getInstance().getTime();
 
-        //String currentDateAndTime = "dd MM yyyy hh:mm:ss"; // 12:00
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date convertedDate = new Date();
+        try {
+            convertedDate = dateFormat.parse(deadLineFromApi);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
         String currentDateAndTime = "yyyy-MM-dd hh:mm:ss"; // 12:00
         deadline.setText(DateFormat.format(currentDateAndTime, noteTS));
 
-//        String date = "dd MMMMM yyyy"; // 01 January 2013
-//        deadline.setText(DateFormat.format(date, noteTS));
+        printDifference(noteTS, convertedDate);
+
+    }
+
+    public void printDifference(Date startDate, Date endDate){
+
+        //milliseconds
+        long different = endDate.getTime() - startDate.getTime();
+
+        System.out.println("startDate : " + startDate);
+        System.out.println("endDate : "+ endDate);
+        System.out.println("different : " + different);
+
+        long secondsInMilli = 1000;
+        long minutesInMilli = secondsInMilli * 60;
+        long hoursInMilli = minutesInMilli * 60;
+        long daysInMilli = hoursInMilli * 24;
+
+        long elapsedDays = different / daysInMilli;
+        different = different % daysInMilli;
+
+        long elapsedHours = different / hoursInMilli;
+        different = different % hoursInMilli;
+
+        long elapsedMinutes = different / minutesInMilli;
+        different = different % minutesInMilli;
+
+        long elapsedSeconds = different / secondsInMilli;
+
+        deadline.setText(String.format(
+                "%d days, %d hours, %d minutes, %d seconds%n",
+                elapsedDays,
+                elapsedHours, elapsedMinutes, elapsedSeconds));
+
     }
 
     @Override
@@ -207,6 +233,55 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         mAuthTask.execute((Void) null);
 
         return true;
+    }
+
+    public class GetDeadlineTask extends AsyncTask<Void, Void, JSONObject>
+    {
+        String GET_DEADLINE_URL = "https://free-lottery.herokuapp.com/api/get_play_info.php";
+
+        GetDeadlineTask() {
+        }
+
+        @Override
+        protected JSONObject doInBackground(Void... params) {
+
+            return BaseApi.getHttpRequestReturnTokener(GET_DEADLINE_URL);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObjectJackpot)
+        {
+            //todo: add error handling when no internet / JSONArray is null
+            try {
+                final String deadlineFromApi = jsonObjectJackpot.getString("deadline");
+
+                Thread t = new Thread() {
+
+                    @Override
+                    public void run() {
+                        try {
+                            while (!isInterrupted()) {
+                                Thread.sleep(1000);
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        updateTextView(deadlineFromApi);
+                                    }
+                                });
+                            }
+                        } catch (InterruptedException e) {
+                        }
+                    }
+                };
+
+                t.start();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
     public class GetJackPotTask extends AsyncTask<Void, Void, JSONObject>
