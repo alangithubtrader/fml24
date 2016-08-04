@@ -1,6 +1,5 @@
 package com.example.fml24.fml24;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,9 +21,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.fml24.fml24.API.BaseApi;
+import com.example.fml24.fml24.Adaptor.GameRulesAdaptor;
 import com.example.fml24.fml24.Adaptor.PlayAdaptor;
+import com.example.fml24.fml24.Model.GameRule;
 
-import java.lang.reflect.Array;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -33,14 +38,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import static com.example.fml24.fml24.R.string.user_id_after_login;
-
 /**
  * Created by adu on 16-07-12.
  */
 public class FragmentPlay extends Fragment implements View.OnClickListener{
 
     private PlayTask mAuthTask = null;
+    private GetJackPotTask getJackPotTask = null;
 
     public static final String USER_ID = "user_id";
     public static final String NUMBERS = "numbers";
@@ -54,6 +58,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
 
     Button randomButton, playButton;
     EditText selectedNumbersEditText;
+    TextView jackPotText;
     GridView grid;
 
     @Override
@@ -89,7 +94,11 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View myView =  inflater.inflate(R.layout.fragment_tabbed, container, false);
+        jackPotText = (TextView)myView.findViewById(R.id.jackPotText);
         playButton = (Button) myView.findViewById(R.id.playButton);
+        getJackPotTask = new GetJackPotTask();
+        getJackPotTask.execute();
+
         randomButton = (Button) myView.findViewById(R.id.randomButton);
         randomButton.setOnClickListener(this);
         playButton.setOnClickListener(this);
@@ -154,6 +163,34 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         mAuthTask.execute((Void) null);
 
         return true;
+    }
+
+    public class GetJackPotTask extends AsyncTask<Void, Void, JSONObject>
+    {
+        String GET_JACKPOT_URL = "https://free-lottery.herokuapp.com/api/get_jackpot_amount.php";
+
+        GetJackPotTask() {
+        }
+
+        @Override
+        protected JSONObject doInBackground(Void... params) {
+
+            return BaseApi.getHttpRequestReturnTokener(GET_JACKPOT_URL);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObjectJackpot)
+        {
+            //todo: add error handling when no internet / JSONArray is null
+            try {
+                String jackpotAmount = jsonObjectJackpot.getString("amount");
+                jackPotText.setText("$" + jackpotAmount);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 
     public class PlayTask extends AsyncTask<Void, Void, Boolean> {
