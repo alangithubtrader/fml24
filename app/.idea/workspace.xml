@@ -54,10 +54,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2b05cb8-436a-4123-856c-2081bb6b54b6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/MoreActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/MoreActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ReportAProblemSubmissionFormActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ReportAProblemSubmissionFormActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_report_a_problem_submission_form.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_report_a_problem_submission_form.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ChangeEmailAddressActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ChangeEmailAddressActivity.java" />
     </list>
     <ignored path="app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,36 +82,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MoreActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MoreActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/MoreActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4017857">
-              <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GeneralFeedbackSubmissionFormActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/GeneralFeedbackSubmissionFormActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="132" column="9" selection-start-line="132" selection-start-column="9" selection-end-line="132" selection-end-column="9" />
+              <caret line="63" column="95" selection-start-line="63" selection-start-column="95" selection-end-line="63" selection-end-column="95" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_general_feedback_submission_form.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_general_feedback_submission_form.xml">
+      <file leaf-file-name="ChangeEmailAddressActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ChangeEmailAddressActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.3018866">
-              <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-              <folding />
+            <state vertical-scroll-proportion="0.51658165">
+              <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
+              <folding>
+                <element signature="e#1933#1972#0" expanded="true" />
+              </folding>
             </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -122,20 +108,19 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ReportAProblemSubmissionFormActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="31" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2068#2107#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_report_a_problem_submission_form.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_report_a_problem_submission_form.xml">
+      <file leaf-file-name="activity_change_email_address.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_change_email_address.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.301887">
-              <caret line="30" column="47" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+            <state vertical-scroll-proportion="-5.207547">
+              <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -1897,7 +1882,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/GameRulesActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/TermsAndConditionsActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/FAQActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ChangeEmailAddressActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/Model/GameRule.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/Adaptor/GameRulesAdaptor.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/game_rule_row.xml" />
@@ -1913,6 +1897,7 @@
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_report_a_problem_submission_form.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ReportAProblemSubmissionFormActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/MoreActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ChangeEmailAddressActivity.java" />
       </list>
     </option>
   </component>
@@ -2636,7 +2621,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13708821" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13708821" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2167043" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -2934,28 +2919,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_change_email_address.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6035889">
-          <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
-          <folding>
-            <element signature="e#306#339#0" expanded="true" />
-            <element signature="e#364#399#0" expanded="true" />
-            <element signature="e#425#460#0" expanded="true" />
-            <element signature="e#484#517#0" expanded="true" />
-            <element signature="e#898#938#0" expanded="true" />
-            <element signature="e#1082#1115#0" expanded="true" />
-            <element signature="e#1198#1217#0" expanded="true" />
-            <element signature="e#1580#1620#0" expanded="true" />
-            <element signature="e#1999#2021#0" expanded="true" />
-            <element signature="e#2502#2526#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_tabbed.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.3773584">
@@ -3094,14 +3057,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ChangeEmailAddressActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21384929">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_faq.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26960784">
@@ -3195,7 +3150,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_report_a_problem_submission_form.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.301887">
+        <state vertical-scroll-proportion="0.6019152">
           <caret line="30" column="47" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
           <folding />
         </state>
@@ -3206,7 +3161,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_general_feedback_submission_form.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3018866">
+        <state vertical-scroll-proportion="0.38440493">
           <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
           <folding />
         </state>
@@ -3215,30 +3170,50 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ReportAProblemSubmissionFormActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2068#2107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/GeneralFeedbackSubmissionFormActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="1.5739796">
           <caret line="132" column="9" selection-start-line="132" selection-start-column="9" selection-end-line="132" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_change_email_address.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.207547">
+          <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/MoreActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4017857">
-          <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="95" selection-start-line="63" selection-start-column="95" selection-end-line="63" selection-end-column="95" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ReportAProblemSubmissionFormActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="31" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/fml24/fml24/ChangeEmailAddressActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51658165">
+          <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
+          <folding>
+            <element signature="e#1933#1972#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
