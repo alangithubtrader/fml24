@@ -101,8 +101,10 @@ public class MoreActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.terms_and_conditions:
                 Toast.makeText(getApplicationContext(), "Terms and condition.", Toast.LENGTH_SHORT).show();
-                Intent termsAndConditionsIntent = new Intent(getApplicationContext(), TermsAndConditionsActivity.class);
-                startActivity(termsAndConditionsIntent);
+//                Intent termsAndConditionsIntent = new Intent(getApplicationContext(), TermsAndConditionsActivity.class);
+//                startActivity(termsAndConditionsIntent);
+                Intent tncIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://docs.google.com/document/d/1BgM6YMwXMTthe4uz6wSwXFVTePXVrcoR6qliul-Qyno/mobilebasic?pli=1"));
+                startActivity(tncIntent);
                 break;
 
             case R.id.faq:
