@@ -112,6 +112,18 @@
             </LinearLayout>
 
         </LinearLayout>
+
+    <TextView
+        android:textSize="11sp"
+        android:textAlignment="center"
+        android:background="@color/dark_blue"
+        android:id="@+id/deadline"
+        android:text="Draw closes in: x days: x hr: x min: x s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonLayout"
+        android:layout_alignParentBottom="true"
+        />
 </RelativeLayout>
 
 

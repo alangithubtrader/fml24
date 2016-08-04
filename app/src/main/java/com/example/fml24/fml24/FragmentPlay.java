@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -42,6 +44,10 @@ import java.util.Random;
  * Created by adu on 16-07-12.
  */
 public class FragmentPlay extends Fragment implements View.OnClickListener{
+
+    java.util.Date noteTS;
+    String time, date;
+    TextView tvTime, tvDate;
 
     private PlayTask mAuthTask = null;
     private GetJackPotTask getJackPotTask = null;
@@ -58,8 +64,9 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
 
     Button randomButton, playButton;
     EditText selectedNumbersEditText;
-    TextView jackPotText;
+    TextView jackPotText, deadline;
     GridView grid;
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -84,9 +91,9 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
             {
                 //Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
                 listOfRandomNumbers = SendSelectedNumbersToDisplay(position + 1);
-
             }
         });
+
 
     }
 
@@ -96,6 +103,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         View myView =  inflater.inflate(R.layout.fragment_tabbed, container, false);
         jackPotText = (TextView)myView.findViewById(R.id.jackPotText);
         playButton = (Button) myView.findViewById(R.id.playButton);
+
         getJackPotTask = new GetJackPotTask();
         getJackPotTask.execute();
 
@@ -103,7 +111,43 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         randomButton.setOnClickListener(this);
         playButton.setOnClickListener(this);
         selectedNumbersEditText = (EditText) myView.findViewById(R.id.selectedNumbers);
+
+        deadline = (TextView)myView.findViewById(R.id.deadline);
+
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateTextView();
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+
+        t.start();
+
+
         return myView;
+    }
+
+    private void updateTextView() {
+        noteTS = Calendar.getInstance().getTime();
+
+        //String currentDateAndTime = "dd MM yyyy hh:mm:ss"; // 12:00
+        String currentDateAndTime = "yyyy-MM-dd hh:mm:ss"; // 12:00
+        deadline.setText(DateFormat.format(currentDateAndTime, noteTS));
+
+//        String date = "dd MMMMM yyyy"; // 01 January 2013
+//        deadline.setText(DateFormat.format(date, noteTS));
     }
 
     @Override

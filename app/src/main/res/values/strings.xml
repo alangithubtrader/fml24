@@ -3,7 +3,7 @@
     <string name="action_settings">More</string>
     <string name="title_activity_intro_to_login">IntroToLoginActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_activity_tabbed">Free Mobile Lottery</string>
+    <string name="title_activity_tabbed">Free Mobile Jackpot</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
