@@ -19,7 +19,7 @@
         android:layout_margin="@dimen/linear_layout_margin_all_around">
 
         <TextView
-            android:layout_margin="@dimen/more_text_margin"
+            android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -27,7 +27,7 @@
             android:id="@+id/account" />
 
         <TextView
-            android:layout_margin="@dimen/more_text_margin"
+            android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -48,7 +48,7 @@
         android:layout_margin="@dimen/linear_layout_margin_all_around">
 
         <TextView
-            android:layout_margin="@dimen/more_text_margin"
+            android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -56,7 +56,7 @@
             android:id="@+id/support" />
 
         <TextView
-            android:layout_margin="@dimen/more_text_margin"
+            android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -64,7 +64,7 @@
             android:id="@+id/report_a_problem" />
 
         <TextView
-            android:layout_margin="@dimen/more_text_margin"
+            android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -86,7 +86,7 @@
 
 
         <TextView
-            android:layout_margin="@dimen/more_text_margin"
+            android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -94,7 +94,7 @@
             android:id="@+id/terms_and_conditions" />
 
         <TextView
-            android:layout_margin="@dimen/more_text_margin"
+            android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -102,7 +102,7 @@
             android:id="@+id/game_rules" />
 
         <TextView
-            android:layout_margin="@dimen/more_text_margin"
+            android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"

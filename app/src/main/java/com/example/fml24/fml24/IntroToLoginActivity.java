@@ -11,12 +11,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class IntroToLoginActivity extends AppCompatActivity {
@@ -35,6 +37,9 @@ public class IntroToLoginActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private LinearLayout dotsLayout;
+    private TextView[] dots;
+    private int[] layouts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,6 @@ public class IntroToLoginActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
     }
 
 
