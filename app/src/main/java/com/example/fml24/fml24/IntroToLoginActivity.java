@@ -120,6 +120,10 @@ public class IntroToLoginActivity extends AppCompatActivity {
             }
             else if (getArguments().getInt(ARG_SECTION_NUMBER) == 3)
             {
+                //todo: temp fix to prevent login activity to show while viewing hints
+            }
+            else if (getArguments().getInt(ARG_SECTION_NUMBER) == 4)
+            {
                 Intent wantToShowBottomBar = new Intent(getContext(), LoginActivity.class);
                 startActivity(wantToShowBottomBar);
             }
@@ -148,7 +152,7 @@ public class IntroToLoginActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
@@ -160,6 +164,8 @@ public class IntroToLoginActivity extends AppCompatActivity {
                     return "SECTION 2";
                 case 2:
                     return "SECTION 3";
+                case 3:
+                    return "SECTION 4";
             }
             return null;
         }
