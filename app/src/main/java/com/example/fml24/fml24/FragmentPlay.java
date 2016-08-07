@@ -1,5 +1,7 @@
 package com.example.fml24.fml24;
 
+import com.jirbo.adcolony.*;
+
 import android.content.SharedPreferences;
 import android.net.ParseException;
 import android.os.AsyncTask;
@@ -27,6 +29,7 @@ import com.example.fml24.fml24.API.BaseApi;
 import com.example.fml24.fml24.Adaptor.GameRulesAdaptor;
 import com.example.fml24.fml24.Adaptor.PlayAdaptor;
 import com.example.fml24.fml24.Model.GameRule;
+import com.jirbo.adcolony.AdColonyV4VCAd;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
 
 /**
  * Created by adu on 16-07-12.
@@ -201,6 +205,10 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
                     return;
                 }
 
+                //AdColonyV4VCAd ad = new AdColonyV4VCAd();
+                AdColonyV4VCAd ad = new AdColonyV4VCAd("vz05b54d2d677d478683");
+                ad.show();
+
                 SendRandomNumbersToServer(listOfRandomNumbers);
                 break;
 
@@ -334,7 +342,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(getActivity(), "Good Luck!", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getActivity(), "Good Luck!", Toast.LENGTH_LONG).show();
                                 return;
                             }
                         },

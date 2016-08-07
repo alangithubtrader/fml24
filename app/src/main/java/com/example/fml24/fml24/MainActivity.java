@@ -1,5 +1,6 @@
 package com.example.fml24.fml24;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -12,9 +13,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.jirbo.adcolony.AdColony;
 import com.ncapdevi.fragnav.FragNavController;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
+import com.jirbo.adcolony.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        AdColony.configure(this, "version:1.0,store:google", "app340f07867cd4457887", "vz05b54d2d677d478683");
 
         session = new UserSessionManager(getApplicationContext());
 
