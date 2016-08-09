@@ -1,6 +1,7 @@
 package com.example.fml24.fml24;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.fml24.fml24.API.BaseApi;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class IntroToLoginActivity extends AppCompatActivity {
 
     /**
@@ -40,11 +46,17 @@ public class IntroToLoginActivity extends AppCompatActivity {
     private LinearLayout dotsLayout;
     private TextView[] dots;
     private int[] layouts;
+    private TextView currentJackpotTextView;
+    private GetJackPotTask getJackPotTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_intro_to_login);
+
+        getJackPotTask = new GetJackPotTask();
+        getJackPotTask.execute();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -168,6 +180,35 @@ public class IntroToLoginActivity extends AppCompatActivity {
                     return "SECTION 4";
             }
             return null;
+        }
+    }
+
+    public class GetJackPotTask extends AsyncTask<Void, Void, JSONObject>
+    {
+        String GET_JACKPOT_URL = "https://free-lottery.herokuapp.com/api/get_jackpot_amount.php";
+
+        GetJackPotTask() {
+        }
+
+        @Override
+        protected JSONObject doInBackground(Void... params) {
+
+            return BaseApi.getHttpRequestReturnTokener(GET_JACKPOT_URL);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObjectJackpot)
+        {
+            //todo: add error handling when no internet / JSONArray is null
+            try {
+                String jackpotAmount = jsonObjectJackpot.getString("amount");
+                currentJackpotTextView = (TextView)findViewById(R.id.currentJackpotAmount);
+                currentJackpotTextView.setText("Current Jackpot: $" + jackpotAmount);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
         }
     }
 }

@@ -17,12 +17,22 @@
             android:src="@mipmap/logo_bar" />
 
         <TextView
+            android:layout_marginBottom="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/slide_1_title"
             android:textColor="@android:color/white"
             android:textSize="@dimen/slide_desc"
             android:textAlignment="center" />
+
+        <TextView
+            android:textColor="@color/jack_pot_text_color_intro"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Jackpot: $???"
+            android:id="@+id/currentJackpotAmount" />
 
         <TextView
             android:layout_width="wrap_content"
