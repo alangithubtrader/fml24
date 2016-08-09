@@ -54,34 +54,28 @@ public class ChangeEmailAddressActivity extends AppCompatActivity implements Vie
         switch (v.getId()) {
             case R.id.changeEmailAddressButton:
 
-                //Get user id from Login Activity
-                String userId = "";
-                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                userId = sharedPreferences.getString(getString(R.string.user_id_after_login), "");
-
                 AutoCompleteTextView email = (AutoCompleteTextView)findViewById(R.id.changeEmailAddress);
 
-                SubmitChangeEmailAddressTask myTask = new SubmitChangeEmailAddressTask(userId, email.getText().toString());
-                myTask.execute();
+                String parsedEmail = email.getText().toString();
+                SubmitChangeEmailAddressTask myTask = new SubmitChangeEmailAddressTask(parsedEmail);
+                myTask.execute(parsedEmail);
                 break;
             default:
                 break;
         }
     }
 
-    public class SubmitChangeEmailAddressTask extends AsyncTask<Void, Void, Boolean> {
+    public class SubmitChangeEmailAddressTask extends AsyncTask<String, Void, Boolean> {
 
-        private final String userId;
         private final String email;
-        String SEND_FEEDBACK_URL = "";
+        String SEND_FEEDBACK_URL = "https://free-lottery.herokuapp.com/api/post_user.php";
 
-        SubmitChangeEmailAddressTask(String userIdd, String emaill) {
-            userId = userIdd;
-            email = emaill;
+        SubmitChangeEmailAddressTask(String email) {
+            this.email = email;
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Boolean doInBackground(final String... params) {
             try {
                 // Simulate network access.
                 // TODO: attempt authentication against a network service.
@@ -89,8 +83,48 @@ public class ChangeEmailAddressActivity extends AppCompatActivity implements Vie
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-                                Toast.makeText(getApplicationContext(), "Email Changed.", Toast.LENGTH_LONG).show();
-                                return;
+
+                                if(response.matches(".*\\d+.*")) //does the email user wants to change to exists
+                                {
+                                    Toast.makeText(ChangeEmailAddressActivity.this, "Email exists. Please try another.", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+
+                                String emailParam = params[0];
+
+                                StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://free-lottery.herokuapp.com/api/get_user.php?email=" + emailParam,
+                                        new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+
+                                                int userId = Integer.parseInt(response.replaceAll("\\D", ""));
+
+                                                //Store the user id in shared preferences
+                                                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                                editor.putString(getString(R.string.user_id_after_login), String.valueOf(userId));
+                                                editor.commit();
+
+                                                Toast.makeText(ChangeEmailAddressActivity.this, "Email Changed success.", Toast.LENGTH_LONG).show();
+                                                // TODO: some how we need to capture this user id for retrieving user info after successfully logged in.
+                                                return;
+                                            }
+                                        },
+                                        new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Toast.makeText(ChangeEmailAddressActivity.this,error.toString(), Toast.LENGTH_LONG).show();
+                                            }
+                                        }){
+                                    @Override
+                                    protected Map<String,String> getParams(){
+                                        Map<String,String> params = new HashMap<String, String>();
+                                        params.put(EMAIL, email);
+                                        return params;
+                                    }};
+
+                                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                                requestQueue.add(stringRequest);
                             }
                         },
                         new Response.ErrorListener() {
@@ -102,7 +136,6 @@ public class ChangeEmailAddressActivity extends AppCompatActivity implements Vie
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<String, String>();
-                        params.put(USER_ID, userId);
                         params.put(EMAIL, email);
                         return params;
                     }
