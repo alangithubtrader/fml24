@@ -43,4 +43,9 @@
         </array>
     <!--INTRO SCREENS ENDS-->
 
+    <!--More screens Starts-->
+    <color name="more_screen_texts_color">#000000</color>
+    <color name="more_screen_background_color">#FFFFFF</color>
+
+
 </resources>

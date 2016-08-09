@@ -4,13 +4,15 @@
     android:id="@+id/moreLinearLayout"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/more_screen_background_color">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:src="@drawable/logo_bar"
-        android:background="@color/colorPlayButton"/>
+        android:background="@color/colorPlayButton"
+        android:textColor="@color/more_screen_texts_color"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -19,6 +21,7 @@
         android:layout_margin="@dimen/linear_layout_margin_all_around">
 
         <TextView
+            android:textColor="@color/more_screen_texts_color"
             android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,6 +30,7 @@
             android:id="@+id/account" />
 
         <TextView
+            android:textColor="@color/more_screen_texts_color"
             android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,6 +52,7 @@
         android:layout_margin="@dimen/linear_layout_margin_all_around">
 
         <TextView
+            android:textColor="@color/more_screen_texts_color"
             android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,6 +61,7 @@
             android:id="@+id/support" />
 
         <TextView
+            android:textColor="@color/more_screen_texts_color"
             android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,6 +70,7 @@
             android:id="@+id/report_a_problem" />
 
         <TextView
+            android:textColor="@color/more_screen_texts_color"
             android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,6 +93,7 @@
 
 
         <TextView
+            android:textColor="@color/more_screen_texts_color"
             android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,6 +102,7 @@
             android:id="@+id/terms_and_conditions" />
 
         <TextView
+            android:textColor="@color/more_screen_texts_color"
             android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,6 +111,7 @@
             android:id="@+id/game_rules" />
 
         <TextView
+            android:textColor="@color/more_screen_texts_color"
             android:layout_margin="@dimen/text_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
