@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.net.ParseException;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -48,6 +50,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -248,22 +252,38 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         alertDialog.show();
     }
 
-    private void DisplayDialogWaiting2MinsWithOptionToWatchVideoNow() {
+    AlertDialog.Builder alertDialog;
+    AlertDialog ad;
 
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+    private void DisplayDialogWaiting2MinsWithOptionToWatchVideoNow() {
+         int secondsLeft = 120;
+        alertDialog = new AlertDialog.Builder(getContext());
         alertDialog.setTitle("Submit Numbers Fast by Watching a Video");
-        alertDialog.setMessage("Submitting in 100 seconds");
+        alertDialog.setMessage("Submitting in 120 seconds...Please wait.");
         alertDialog.setNeutralButton("Play video instead", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getContext(), "Play Video Ad", Toast.LENGTH_SHORT).show();
 
-                AdColonyV4VCAd ad = new AdColonyV4VCAd("vz05b54d2d677d478683");
-                ad.show();
+                AdColonyV4VCAd adVideo = new AdColonyV4VCAd("vz05b54d2d677d478683");
+                adVideo.show();
             }
         });
 
-        alertDialog.show();
+        ad = alertDialog.create();
+        ad.show();
+
+        new CountDownTimer(120000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+
+            @Override
+            public void onFinish() {
+                ad.dismiss();
+            }
+        }.start();
+
     }
 
     private boolean SendRandomNumbersToServer(ArrayList<Integer> listOfRandomNumbers) {
