@@ -114,6 +114,7 @@
         </LinearLayout>
 
     <TextView
+        android:textStyle="bold"
         android:textSize="11sp"
         android:textAlignment="center"
         android:background="@color/dark_blue"

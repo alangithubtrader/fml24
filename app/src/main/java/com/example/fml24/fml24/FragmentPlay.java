@@ -174,7 +174,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
         long elapsedSeconds = different / secondsInMilli;
 
         deadline.setText(String.format(
-                "%d days, %d hours, %d minutes, %d seconds%n",
+                "Draw closes in: %d days, %d hours, %d minutes, %d seconds%n",
                 elapsedDays,
                 elapsedHours, elapsedMinutes, elapsedSeconds));
 
