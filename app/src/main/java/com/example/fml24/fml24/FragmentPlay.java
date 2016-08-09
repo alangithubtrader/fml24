@@ -2,12 +2,15 @@ package com.example.fml24.fml24;
 
 import com.jirbo.adcolony.*;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ParseException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -205,9 +208,31 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
                     return;
                 }
 
-                //AdColonyV4VCAd ad = new AdColonyV4VCAd();
-                AdColonyV4VCAd ad = new AdColonyV4VCAd("vz05b54d2d677d478683");
-                ad.show();
+                final String names[] ={"Wait 2 minutes", "Watch <35 seconds video"};
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+                alertDialog.setTitle("Submit Numbers");
+                alertDialog.setItems(names, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        switch (names[which]) {
+                            case "Wait 2 minutes":
+                                Toast.makeText(getContext(), "Waiting 2 minutes...", Toast.LENGTH_SHORT).show();
+                                break;
+                            case "Watch <35 seconds video":
+                                Toast.makeText(getContext(), "Play Video Ad", Toast.LENGTH_SHORT).show();
+
+                                AdColonyV4VCAd ad = new AdColonyV4VCAd("vz05b54d2d677d478683");
+                                ad.show();
+
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                });
+                alertDialog.show();
+
 
                 SendRandomNumbersToServer(listOfRandomNumbers);
                 break;
