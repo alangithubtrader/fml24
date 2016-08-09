@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="@dimen/large_img_width"
             android:layout_height="@dimen/large_img_height"
-            android:src="@drawable/logo_bar"
+            android:src="@mipmap/logo_bar"
             />
 
         <LinearLayout
