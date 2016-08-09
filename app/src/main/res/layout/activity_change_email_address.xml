@@ -23,11 +23,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/changeEmailAddressLabel"
+            android:text="@string/currentEmailAddressLabel"
             android:textColor="@android:color/white"
             android:textSize="@dimen/slide_desc"
             android:textAlignment="center"
             android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="currentEmailAddress@gmail.com"
+            android:id="@+id/current_email_address" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,7 +52,7 @@
                 android:id="@+id/changeEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint= "@string/prompt_email"
+                android:hint= "@string/change_email_hint"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:singleLine="true" />
@@ -59,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/action_sign_in"
+            android:text="@string/email_change_button"
             android:textStyle="bold" />
 
     </LinearLayout>

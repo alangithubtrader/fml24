@@ -21,6 +21,12 @@
     <string name="user_id_after_login">user_id_after_login</string>
     <string name="defaultTextNumberField">Pick 4 Numbers</string>
 
+    <!-- Strings related to Email Change -->
+    <string name="email_change_button">Change</string>
+    <string name="change_email_hint">Enter new email</string>
+
+
+
     <!--INTRO STRINGS STARTS -->
         <string name="next">NEXT</string>
         <string name="skip">SKIP</string>
@@ -51,7 +57,7 @@
     <!--INTRO STRINGS ENDS -->
 
     <!-- MORE STRINGS STARTS -->
-    <string name="changeEmailAddressLabel">Change Email Address</string>
+    <string name="currentEmailAddressLabel">Current Email Address</string>
     <!-- MORE STRINGS ENDS -->
 
 </resources>

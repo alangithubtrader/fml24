@@ -33,12 +33,20 @@ public class ChangeEmailAddressActivity extends AppCompatActivity implements Vie
     public static final String EMAIL = "email";
     AutoCompleteTextView textField;
     Button button;
+    UserSessionManager session;
+    TextView currentEmailAddressTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_email_address);
+
+        session = new UserSessionManager(getApplicationContext());
+        Map<String, String> map = session.getUserDetails();
+        String email = map.get("email");
+        currentEmailAddressTextView = (TextView)findViewById(R.id.current_email_address);
+        currentEmailAddressTextView.setText(email);
 
         textField = (AutoCompleteTextView)findViewById(R.id.changeEmailAddress);
         textField.addTextChangedListener(textWatcher);
