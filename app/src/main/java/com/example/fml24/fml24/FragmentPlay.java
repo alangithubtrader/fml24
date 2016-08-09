@@ -208,30 +208,7 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
                     return;
                 }
 
-                final String names[] ={"Wait 2 minutes", "Watch <35 seconds video"};
-                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
-                alertDialog.setTitle("Submit Numbers");
-                alertDialog.setItems(names, new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        switch (names[which]) {
-                            case "Wait 2 minutes":
-                                Toast.makeText(getContext(), "Waiting 2 minutes...", Toast.LENGTH_SHORT).show();
-                                break;
-                            case "Watch <35 seconds video":
-                                Toast.makeText(getContext(), "Play Video Ad", Toast.LENGTH_SHORT).show();
-
-                                AdColonyV4VCAd ad = new AdColonyV4VCAd("vz05b54d2d677d478683");
-                                ad.show();
-
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                });
-                alertDialog.show();
+                DisplayDialogWait2MinsOrWatchVideo();
 
 
                 SendRandomNumbersToServer(listOfRandomNumbers);
@@ -241,6 +218,52 @@ public class FragmentPlay extends Fragment implements View.OnClickListener{
             default:
                 break;
         }
+    }
+
+    private void DisplayDialogWait2MinsOrWatchVideo() {
+        final String names[] ={"Wait 2 minutes", "Watch <35 seconds video"};
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setTitle("Submit Numbers");
+        alertDialog.setItems(names, new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                switch (names[which]) {
+                    case "Wait 2 minutes":
+                        Toast.makeText(getContext(), "Waiting 2 minutes...", Toast.LENGTH_SHORT).show();
+                        DisplayDialogWaiting2MinsWithOptionToWatchVideoNow();
+                        break;
+                    case "Watch <35 seconds video":
+                        Toast.makeText(getContext(), "Play Video Ad", Toast.LENGTH_SHORT).show();
+
+                        AdColonyV4VCAd ad = new AdColonyV4VCAd("vz05b54d2d677d478683");
+                        ad.show();
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        alertDialog.show();
+    }
+
+    private void DisplayDialogWaiting2MinsWithOptionToWatchVideoNow() {
+
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setTitle("Submit Numbers Fast by Watching a Video");
+        alertDialog.setMessage("Submitting in 100 seconds");
+        alertDialog.setNeutralButton("Play video instead", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getContext(), "Play Video Ad", Toast.LENGTH_SHORT).show();
+
+                AdColonyV4VCAd ad = new AdColonyV4VCAd("vz05b54d2d677d478683");
+                ad.show();
+            }
+        });
+
+        alertDialog.show();
     }
 
     private boolean SendRandomNumbersToServer(ArrayList<Integer> listOfRandomNumbers) {
